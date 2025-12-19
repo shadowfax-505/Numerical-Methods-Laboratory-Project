@@ -542,18 +542,160 @@ Root 3: 2.000244
 [Add your theory content here]
 
 #### Secant Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<double> foundRoots;
+ofstream fout;
+
+double evalPoly(double x, const vector<double>& coef)
+{
+    double sum = 0;
+    for(int i = 0; i < coef.size(); i++)
+        sum += coef[i] * pow(x, i);
+    return sum;
+}
+
+void printPolynomial(const vector<double>& coef)
+{
+    bool firstTerm = true;
+    int n = coef.size();
+
+    for(int i = n-1; i >= 0; i--)
+    {
+        if(fabs(coef[i]) < 1e-12) continue;
+
+        if(!firstTerm)
+        {
+            if(coef[i] < 0) cout << " - ", fout << " - ";
+            else cout << " + ", fout << " + ";
+        }
+        else
+        {
+            if(coef[i] < 0) cout << "-", fout << "-";
+            firstTerm = false;
+        }
+
+        double c = fabs(coef[i]);
+
+        if(i == 0) cout << c, fout << c;
+        else if(i == 1) cout << c << "x", fout << c << "x";
+        else cout << c << "x^" << i, fout << "x^" << i;
+    }
+
+    cout << endl;
+    fout << endl;
+}
+
+void secantMethod(double x0, double x1, double tol, const vector<double>& coef)
+{
+    double xNext;
+    int iterations = 0;
+
+    while(fabs(x1 - x0) >= tol && fabs(evalPoly(x1, coef)) >= tol)
+    {
+        double f0 = evalPoly(x0, coef);
+        double f1 = evalPoly(x1, coef);
+
+        if(fabs(f1 - f0) < 1e-12) return;
+
+        xNext = (x0 * f1 - x1 * f0) / (f1 - f0);
+        iterations++;
+
+        x0 = x1;
+        x1 = xNext;
+    }
+
+    if(fabs(evalPoly(xNext, coef)) > tol) return;
+
+    for(double r : foundRoots)
+        if(fabs(r - xNext) < tol) return;
+
+    foundRoots.push_back(xNext);
+
+    cout << fixed << setprecision(6);
+    fout << fixed << setprecision(6);
+
+    cout << "Interval: [" << x0 << ", " << x1 << "] Root: " << xNext
+         << " Iterations: " << iterations << endl;
+    fout << "Interval: [" << x0 << ", " << x1 << "] Root: " << xNext
+         << " Iterations: " << iterations << endl;
+}
+
+int main()
+{
+    ifstream fin("Input.txt");
+    fout.open("Output.txt");
+
+    if(!fin.is_open())
+    {
+        cout << "Cannot open Input.txt" << endl;
+        return 0;
+    }
+
+    int testCases;
+    fin >> testCases;
+
+    while(testCases--)
+    {
+        foundRoots.clear();
+
+        int deg;
+        fin >> deg;
+        vector<double> coef(deg + 1);
+        for(double &x : coef) fin >> x;
+        reverse(coef.begin(), coef.end());
+
+        cout << "\nPolynomial: ";
+        fout << "\nPolynomial: ";
+        printPolynomial(coef);
+
+        double xmax = 0;
+        for(int i = 0; i <= deg; i++)
+            xmax = max(xmax, 1.0 + fabs(coef[i]/coef[deg]));
+
+        cout << "Root bound: " << xmax << endl;
+        fout << "Root bound: " << xmax << endl;
+
+        double step = 0.45;
+        double tol = 1e-3;
+
+        for(double i = -xmax; i <= xmax; i += step)
+            secantMethod(i, i + step, tol, coef);
+    }
+
+    fin.close();
+    fout.close();
+    return 0;
+}
+
 ```
 
 #### Secant Input
 ```
-[Add your input format here]
+2
+3
+1 -6 11 -6
+5
+1 -3 -7 27 -10 -8
+
 ```
 
 #### Secant Output
 ```
-[Add your output format here]
+Polynomial: 1x^3 - 6x^2 + 11x - 6
+Root bound: 3
+Interval: [0.5000, 1.0000] Root: 1.000000 Iterations: 6
+Interval: [1.5000, 2.0000] Root: 2.000000 Iterations: 7
+Interval: [2.5000, 3.0000] Root: 3.000000 Iterations: 7
+
+Polynomial: 1x^5 - 3x^4 - 7x^3 + 27x^2 - 10x - 8
+Root bound: 5.47723
+Interval: [-2.0000, -1.5000] Root: -2.000244 Iterations: 8
+Interval: [0.5000, 1.0000] Root: 0.999756 Iterations: 9
+Interval: [1.5000, 2.0000] Root: 2.000244 Iterations: 9
+
 ```
 
 ---
