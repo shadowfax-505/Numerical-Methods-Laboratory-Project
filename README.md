@@ -200,6 +200,7 @@ Features
 - Automatic generation of function strings
 - Eliminates duplicate roots
 - Well-formatted output with precision control
+- Default error tolerance: 0.001
 
 #### Bisection Code
 ```cpp
@@ -382,7 +383,39 @@ Roots:
 ### False Position Method
 
 #### False Position Theory
-[Add your theory content here]
+False Position Method
+
+Theory
+
+The False Position Method, also known as the Regula Falsi Method, is a numerical technique used to find the roots of a continuous function. Like the Bisection Method, it requires an interval [a, b] where the function changes sign, i.e., f(a) * f(b) < 0.
+The False Position Method uses a straight line connecting the points (a, f(a)) and (b, f(b)) and finds the point where this line intersects the x-axis. This intersection is used as a better approximation of the root.
+The method iteratively updates the interval until the root is found with the desired accuracy. It often converges faster than the Bisection Method, especially when the function is nearly linear near the root.
+
+Mathematical Principle
+Given a continuous function f(x) on [a, b] such that:
+f(a) * f(b) < 0
+The point c (approximation of the root) is calculated as:
+c = b - (f(b) * (a - b)) / (f(a) - f(b))
+Then, depending on the sign of f(c):
+- If f(a) * f(c) < 0, the root lies in [a, c]
+- Else if f(b) * f(c) < 0, the root lies in [c, b]
+Repeat the process until |f(c)| is smaller than the desired tolerance.
+
+Algorithm (False Position Method)
+1. Choose two initial points a and b such that f(a) * f(b) < 0
+2. Compute the intersection point of the line joining (a, f(a)) and (b, f(b)):
+   c = b - (f(b) * (a - b)) / (f(a) - f(b))
+3. If f(c) = 0, then c is the root.
+4. Otherwise, replace either a or b depending on the sign of f(c) to form a new interval where a root exists.
+5. Repeat steps 2–4 until the root is approximated within the desired error tolerance.
+
+Features
+- Supports multiple test cases
+- Faster convergence than Bisection in many cases
+- Dynamic function evaluation
+- Precision control in output
+- Default error tolerance: 0.001
+
 
 #### False Position Code
 ```cpp
@@ -587,7 +620,38 @@ Root 3: 2.000244
 ### Secant Method
 
 #### Secant Theory
-[Add your theory content here]
+Secant Method
+
+Theory
+
+The Secant Method is a numerical method used to find the roots of a continuous function. It is similar to the Newton-Raphson method but does not require the computation of derivatives. Instead, it uses a line through two points on the function curve to approximate the root.
+The method iteratively updates the approximation of the root using the two most recent estimates. The Secant Method is generally faster than the Bisection Method but may be less stable.
+
+Mathematical Principle
+Given a continuous function f(x) and two initial approximations x0 and x1, the next approximation x2 is computed using the formula:
+x2 = x1 - f(x1) * ((x1 - x0) / (f(x1) - f(x0)))
+
+Then, the process is repeated using the latest two approximations:
+x_{n+1} = x_n - f(x_n) * ((x_n - x_{n-1}) / (f(x_n) - f(x_{n-1}))) 
+
+This continues until the value of f(x_{n+1}) is sufficiently close to zero or the difference between successive approximations is smaller than the desired tolerance.
+
+Algorithm (Secant Method)
+1. Choose two initial points x0 and x1 near the root.
+2. Compute the next approximation using:
+   x2 = x1 - f(x1) * ((x1 - x0) / (f(x1) - f(x0)))
+3. Check if |f(x2)| < tolerance or |x2 - x1| < tolerance.
+4. If not, set x0 = x1 and x1 = x2, then repeat step 2.
+5. Continue until the root is approximated within the desired error tolerance.
+
+Features
+- Does not require derivative calculation
+- Faster convergence than Bisection in most cases
+- Requires good initial guesses
+- Can fail to converge if function is not well-behaved
+- Supports multiple test cases
+- Default error tolerance: 0.001
+
 
 #### Secant Code
 ```cpp
@@ -751,7 +815,33 @@ Interval: [1.5000, 2.0000] Root: 2.000244 Iterations: 9
 ### Newton Raphson Method
 
 #### Newton Raphson Theory
-[Add your theory content here]
+Newton-Raphson Method
+
+Theory
+
+The Newton-Raphson Method is a widely used numerical technique to find the roots of a continuous and differentiable function. It uses the derivative of the function to iteratively approximate the root. This method generally converges faster than the Bisection and Secant methods when the initial guess is sufficiently close to the actual root.
+
+Mathematical Principle
+Given a function f(x) and its derivative f'(x), if x_n is the current approximation of the root, the next approximation x_{n+1} is calculated as:
+x_{n+1} = x_n - f(x_n) / f'(x_n)
+
+This formula is applied repeatedly until the value of f(x_{n+1}) is close enough to zero or the difference between successive approximations is smaller than a specified tolerance.
+
+Algorithm (Newton-Raphson Method)
+1. Choose an initial guess x0 near the root.
+2. Compute the next approximation using:
+   x_{n+1} = x_n - f(x_n) / f'(x_n)
+3. Check if |f(x_{n+1})| < tolerance or |x_{n+1} - x_n| < tolerance.
+4. If not, set x_n = x_{n+1} and repeat step 2.
+5. Continue until the root is approximated within the desired error tolerance.
+
+Features
+- Fast convergence if the initial guess is close to the root
+- Requires derivative of the function
+- May fail to converge if the initial guess is poor or function is not well-behaved
+- Supports multiple test cases
+- Default error tolerance: 0.001
+
 
 #### Newton Raphson Code
 ```cpp
