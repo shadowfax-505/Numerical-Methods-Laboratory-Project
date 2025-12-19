@@ -1,7 +1,6 @@
 # Numerical Methods
 ### Introduction
 
-This project
 
 ### Project Structure
 
@@ -1056,18 +1055,128 @@ Root 1 = 2.000000 (Iterations: 6)
 [Add your theory content here]
 
 #### Simpson's 1/3 Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+using db = double;
+
+db evalPoly(db x, const vector<db>& coeff)
+{
+    db sum = 0;
+    db powx = 1;
+    for(db c : coeff)
+    {
+        sum += c * powx;
+        powx *= x;
+    }
+    return sum;
+}
+
+void simpsonRule(int tc, ifstream &fin, ofstream &fout)
+{
+    int deg;
+    fin >> deg;
+    vector<db> coef(deg+1);
+    for(int i=0; i<=deg; i++) fin >> coef[i];
+
+    db a, b;
+    int n;
+    fin >> a >> b >> n;
+
+    if(n % 2 != 0)
+    {
+        cout << "Test Case #" << tc << ": Error - n must be even!\n\n";
+        fout << "Test Case #" << tc << ": Error - n must be even!\n\n";
+        return;
+    }
+
+    db h = (b - a) / n;
+    db sum = evalPoly(a, coef) + evalPoly(b, coef);
+
+    for(int i=1; i<n; i++)
+    {
+        db x = a + i*h;
+        sum += (i % 2 == 1) ? 4*evalPoly(x, coef) : 2*evalPoly(x, coef);
+    }
+
+    db result = (h/3) * sum;
+
+    cout << "Test Case #" << tc << "\n";
+    cout << "Degree: " << deg << "\n";
+    cout << "Coefficients: ";
+    for(db c : coef) cout << c << " ";
+    cout << "\nInterval: [" << a << ", " << b << "]\n";
+    cout << "Intervals (n): " << n << "\n";
+    cout << "Step size (h): " << h << "\n";
+    cout << "Integral result: " << result << "\n\n";
+
+    fout << "Test Case #" << tc << "\n";
+    fout << "Degree: " << deg << "\n";
+    fout << "Coefficients: ";
+    for(db c : coef) fout << c << " ";
+    fout << "\nInterval: [" << a << ", " << b << "]\n";
+    fout << "Intervals (n): " << n << "\n";
+    fout << "Step size (h): " << h << "\n";
+    fout << "Integral result: " << result << "\n\n";
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if(!fin)
+    {
+        cout << "Error: input.txt not found!\n";
+        return 0;
+    }
+
+    int t;
+    fin >> t;
+    cout << "Total Test Cases: " << t << "\n\n";
+    fout << "Total Test Cases: " << t << "\n\n";
+
+    for(int tc = 1; tc <= t; tc++)
+        simpsonRule(tc, fin, fout);
+
+    cout << "All results written to output.txt!\n";
+    return 0;
+}
+
 ```
 
 #### Simpson's 1/3 Input
 ```
-[Add your input format here]
+2
+3
+1 0 -2 1
+0 2 4
+2
+2
+2 -3 1
+-1 1 6
+
 ```
 
 #### Simpson's 1/3 Output
 ```
-[Add your output format here]
+Test Case #1
+Degree: 3
+Coefficients: 1 0 -2 1 
+Interval: [0, 2]
+Intervals (n): 4
+Step size (h): 0.5
+Integral result: 0.666667
+
+Test Case #2
+Degree: 2
+Coefficients: 2 -3 1 
+Interval: [-1, 1]
+Intervals (n): 6
+Step size (h): 0.333333
+Integral result: 0.000000
+
 ```
 
 ---
@@ -1079,17 +1188,126 @@ Root 1 = 2.000000 (Iterations: 6)
 
 #### Simpson's 3/8 Code
 ```python
-# Add your code here
+#include <bits/stdc++.h>
+using namespace std;
+
+using db = double;
+
+db evalPoly(db x, const vector<db>& coeff)
+{
+    db sum = 0, powx = 1;
+    for(db c : coeff)
+    {
+        sum += c * powx;
+        powx *= x;
+    }
+    return sum;
+}
+
+void simpson38(int tc, ifstream &fin, ofstream &fout)
+{
+    int deg;
+    fin >> deg;
+    vector<db> coef(deg + 1);
+    for(int i=0; i<=deg; i++) fin >> coef[i];
+
+    db a, b;
+    int n;
+    fin >> a >> b >> n;
+
+    if(n % 3 != 0)
+    {
+        cout << "Test Case #" << tc << ": Error - n must be a multiple of 3!\n\n";
+        fout << "Test Case #" << tc << ": Error - n must be a multiple of 3!\n\n";
+        return;
+    }
+
+    db h = (b - a) / n;
+    db sum = evalPoly(a, coef) + evalPoly(b, coef);
+
+    for(int i=1; i<n; i++)
+    {
+        db x = a + i*h;
+        sum += (i % 3 == 0) ? 2*evalPoly(x, coef) : 3*evalPoly(x, coef);
+    }
+
+    db result = (3*h/8) * sum;
+
+    cout << "Test Case #" << tc << "\n";
+    cout << "Degree: " << deg << "\n";
+    cout << "Coefficients: ";
+    for(db c : coef) cout << c << " ";
+    cout << "\nInterval: [" << a << ", " << b << "]\n";
+    cout << "Intervals (n): " << n << "\n";
+    cout << "Step size (h): " << h << "\n";
+    cout << "Integral result: " << result << "\n\n";
+
+    fout << "Test Case #" << tc << "\n";
+    fout << "Degree: " << deg << "\n";
+    fout << "Coefficients: ";
+    for(db c : coef) fout << c << " ";
+    fout << "\nInterval: [" << a << ", " << b << "]\n";
+    fout << "Intervals (n): " << n << "\n";
+    fout << "Step size (h): " << h << "\n";
+    fout << "Integral result: " << result << "\n\n";
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if(!fin)
+    {
+        cout << "Error: input.txt not found!\n";
+        return 0;
+    }
+
+    int t;
+    fin >> t;
+    cout << "Total Test Cases: " << t << "\n\n";
+    fout << "Total Test Cases: " << t << "\n\n";
+
+    for(int tc=1; tc<=t; tc++)
+        simpson38(tc, fin, fout);
+
+    cout << "All results written to output.txt!\n";
+    return 0;
+}
+
 ```
 
 #### Simpson's 3/8 Input
 ```
-[Add your input format here]
+2
+3
+1 0 -2 1
+0 2 6
+2
+2
+2 -3 1
+-1 1 3
+
 ```
 
 #### Simpson's 3/8 Output
 ```
-[Add your output format here]
+Test Case #1
+Degree: 3
+Coefficients: 1 0 -2 1 
+Interval: [0, 2]
+Intervals (n): 6
+Step size (h): 0.333333
+Integral result: 0.666667
+
+Test Case #2
+Degree: 2
+Coefficients: 2 -3 1 
+Interval: [-1, 1]
+Intervals (n): 3
+Step size (h): 0.666667
+Integral result: 0.000000
+
 ```
 
 ---
