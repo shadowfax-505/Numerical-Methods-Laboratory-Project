@@ -1,4 +1,53 @@
-# Table of Contents
+# Numerical Methods
+### Introduction
+
+This project
+
+### Project Structure
+
+```
+README.md/
+├── Project Introduction
+├── README.md Structure
+└── Table of Contents
+├── Solution of Non-Linear Equations
+    ├── Bisection
+    ├── False Position
+    ├── Secant
+    ├── Newton Raphson
+
+├── Solution of Linear Equations
+    ├── Gauss Elimination
+    ├── Gauss Jordan Elimination
+    ├── LU Decomposition
+    ├── Matrix Inversion
+
+├── Solution of Differential Equations
+    ├── Runge Kutta 4th Order
+
+├── Numerical Integration
+    ├── Simpson's 1/3 Rule
+    └── Simpson's 3/8 Rule
+
+├── Interpolation Methods
+    ├── Newton Forward Interpolation
+    ├── Newton Backward Interpolation
+    ├── Newton Divided Difference Interpolation
+
+├── Numerical Differentiation
+    ├── Differentiation by Forward Interpolation
+    ├── Differentiation by Backward Interpolation
+
+├── Curve Fitting & Regression
+    ├── Linear Regression
+    ├── Polynomial Regression
+    ├── Transcendental Regression
+
+
+```
+
+
+#### Table of Contents
 
 - [Solution of Non-Linear Equations](#solution-of-non-linear-equations)
   - [Bisection Method](#bisection-method)
@@ -62,8 +111,8 @@
     - [Code](#simpsons-38-code)
     - [Input](#simpsons-38-input)
     - [Output](#simpsons-38-output)
-
-
+   
+    
 ---
 
 
