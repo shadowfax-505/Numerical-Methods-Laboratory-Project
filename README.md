@@ -2773,7 +2773,7 @@ int main()
     for(int i=0;i<n;i++) fout << y[i]<<" ";
 
     fout<<"\nIntercept(a): "<<a;
-    fout<<"\nSlope(b) :"<<b;
+    fout<<"\nSlope(b): "<<b;
     fout << "\nLinear Regression Equation: y = " << a << " + " << b << "x" << endl;
 
     if(i < T) fout<<endl;
@@ -2807,7 +2807,7 @@ Number of points: 7
 x values: 1.000 2.000 3.000 4.000 5.000 6.000 7.000 
 y values: 3.000 4.000 4.000 5.000 8.000 9.000 10.000 
 Intercept(a): 1.143
-Slope(b) :1.250
+Slope(b): 1.250
 Linear Regression Equation: y = 1.143 + 1.250x
 
 Test Case 2
@@ -2815,7 +2815,7 @@ Number of points: 4
 x values: 3.000 9.000 5.000 3.000 
 y values: 8.000 6.000 4.000 2.000 
 Intercept(a): 4.167
-Slope(b) :0.167
+Slope(b): 0.167
 Linear Regression Equation: y = 4.167 + 0.167x
 
 Test Case 3
@@ -2823,8 +2823,9 @@ Number of points: 4
 x values: 4.000 7.000 3.000 1.000 
 y values: 6.000 5.000 8.000 3.000 
 Intercept(a): 4.800
-Slope(b) :0.187
+Slope(b): 0.187
 Linear Regression Equation: y = 4.800 + 0.187x
+
 ```
 ---
 #### Polynomial-regression
