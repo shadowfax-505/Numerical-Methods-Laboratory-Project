@@ -1700,7 +1700,7 @@ Integral result: 0.000000
 
 ---
 
-#### newton-backward-interpolation
+#### Newton-backward-interpolation
 #### newton-backward-theory
 [Add your theory content here]
 #### newton-backward-code
@@ -1719,7 +1719,7 @@ Integral result: 0.000000
 
 ---
 
-#### newton-divided-difference-interpolation
+#### Newton-divided-difference-interpolation
 #### newton-divided-difference-theory
 [Add your theory content here]
 #### newton-divided-difference-code
@@ -1738,7 +1738,7 @@ Integral result: 0.000000
 
 ---
 
-#### numerical-differentiation
+#### Numerical-differentiation
 
 #### differentiation-forward-interpolation
 #### differentiation-forward-theory
@@ -1760,7 +1760,7 @@ Integral result: 0.000000
 
 
 
-#### differentiation-backward-interpolation
+#### Differentiation-backward-interpolation
 #### differentiation-backward-theory
 [Add your theory content here]
 #### differentiation-backward-code
@@ -1779,7 +1779,7 @@ Integral result: 0.000000
 ---
 
 
-#### curve-fitting--regression
+#### Curve-fitting--regression
 #### linear-regression
 #### linear-regression-theory
 [Add your theory content here]
@@ -1800,7 +1800,7 @@ Integral result: 0.000000
 
 
 
-#### polynomial-regression
+#### Polynomial-regression
 #### polynomial-regression-theory
 [Add your theory content here]
 #### polynomial-regression-code
@@ -1819,7 +1819,7 @@ Integral result: 0.000000
 ---
    
     - 
-#### transcendental-regression
+#### Transcendental-regression
 #### transcendental-regression-theory
 [Add your theory content here]
 #### transcendental-regression-code
