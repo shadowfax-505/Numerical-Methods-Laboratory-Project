@@ -1900,30 +1900,24 @@ int main()
     fin >> x0 >> y0 >> x >> h;
 
     float result = rungeKutta(x0, y0, x, h);
-
-    fout << "--------------------------------------------\n";
-    fout << " Runge-Kutta 4th Order Method (RK4)\n";
-    fout << " Differential Equation: dy/dx = (x - y) / 2\n";
-    fout << "--------------------------------------------\n\n";
-
     fout << fixed << setprecision(4);
-    fout << "Initial value of x (x0)      : " << x0 << endl;
-    fout << "Initial value of y (y0)      : " << y0 << endl;
-    fout << "Value of x required          : " << x  << endl;
-    fout << "Step size (h)                : " << h  << endl;
+    fout << "Initial value of x (x0)   : " << x0 << endl;
+    fout << "Initial value of y (y0)   : " << y0 << endl;
+    fout << "Value of x required       : " << x  << endl;
+    fout << "Step size (h)             : " << h  << endl;
 
-    fout << "\n--------------------------------------------\n";
+    
     fout << " Result\n";
-    fout << "--------------------------------------------\n";
     fout << "Approximate value of y at x = " << x
          << " is: " << result << endl;
-    fout << "--------------------------------------------\n";
+    
 
     fin.close();
     fout.close();
 
     return 0;
 }
+
 
 ```
 
@@ -1935,21 +1929,13 @@ int main()
 
 #### Runge-Kutta 4th Order Output
 ```
---------------------------------------------
- Runge-Kutta 4th Order Method (RK4)
- Differential Equation: dy/dx = (x - y) / 2
---------------------------------------------
-
-Initial value of x (x0)      : 0.0000
-Initial value of y (y0)      : 1.0000
-Value of x required          : 2.0000
-Step size (h)                : 0.2000
-
---------------------------------------------
+Initial value of x (x0)   : 0.0000
+Initial value of y (y0)   : 1.0000
+Value of x required       : 2.0000
+Step size (h)             : 0.2000
  Result
---------------------------------------------
 Approximate value of y at x = 2.0000 is: 1.1036
---------------------------------------------
+
 ```
 
 ---
