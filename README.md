@@ -1685,17 +1685,106 @@ Integral result: 0.000000
 #### newton-forward-theory
 [Add your theory content here]
 #### newton-forward-code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+
+float u_cal(float u, int n)
+{
+    float res = u;
+    for (int i = 1; i < n; i++)
+        res *= (u - i);
+    return res;
+}
+
+
+int fact(int n)
+{
+    int f = 1;
+    for (int i = 2; i <= n; i++)
+        f *= i;
+    return f;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if (!fin) {
+        fout << "Error opening input file!" << endl;
+        return 0;
+    }
+
+    int n;
+    fin >> n;
+
+    vector<float> x(n);
+    for (int i = 0; i < n; i++)
+        fin >> x[i];
+
+    vector<vector<float>> y(n, vector<float>(n));
+
+    for (int i = 0; i < n; i++)
+        fin >> y[i][0];
+
+    float value;
+    fin >> value;
+
+    fin.close();
+
+    
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < n - i; j++) {
+            y[j][i] = y[j + 1][i - 1] - y[j][i - 1];
+        }
+    }
+
+    
+    fout << "Forward Difference Table\n\n";
+    for (int i = 0; i < n; i++) {
+        fout << setw(6) << x[i] << "\t";
+        for (int j = 0; j < n - i; j++)
+            fout << setw(8) << y[i][j] << "\t";
+        fout << endl;
+    }
+
+    
+    float u = (value - x[0]) / (x[1] - x[0]);
+    float sum = y[0][0];
+
+    for (int i = 1; i < n; i++) {
+        sum += (u_cal(u, i) * y[0][i]) / fact(i);
+    }
+
+    fout << "\nInterpolated value at x = " << value << " is " << sum << endl;
+
+    fout.close();
+
+    return 0;
+}
+
 ```
 #### newton-forward-input
 ```
-[Add your input format here]
+4
+45 50 55 60
+0.7071 0.7660 0.8192 0.8660
+52
+
 ```
 
 #### newton-forward-output
 ```
-[Add your output format here]
+Forward Difference Table
+
+    45	  0.7071	  0.0589	-0.00569999	-0.000699997	
+    50	   0.766	  0.0532	-0.00639999	
+    55	  0.8192	  0.0468	
+    60	   0.866	
+
+Interpolated value at x = 52 is 0.788003
 ```
 
 ---
