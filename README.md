@@ -1031,18 +1031,158 @@ Root 1 = 2.000000 (Iterations: 6)
 [Add your theory content here]
 
 #### Gauss Elimination Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const double EPS = 1e-9;
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin >> n;
+
+    vector<vector<double>> a(n, vector<double>(n + 1));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j <= n; j++) fin >> a[i][j];
+    
+    fout << "Test Case " << i << "(" << n << "X" << n << ")" << endl;
+    fout << fixed << setprecision(3);
+
+    fout<<"\nMatrix:\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= n; j++) fout << a[i][j] << "\t";
+        fout<<endl;
+    }
+      
+    for (int i = 0; i < n; i++)
+    {
+        int pivot = i;
+        for (int k = i + 1; k < n; k++)
+            if (fabs(a[k][i]) > fabs(a[pivot][i])) pivot = k;
+
+        swap(a[i], a[pivot]);
+
+        if (fabs(a[i][i]) < EPS) continue;
+
+        for (int j = i + 1; j < n; j++)
+        {
+            double factor = a[j][i] / a[i][i];
+            for (int k = i; k <= n; k++) a[j][k] -= factor * a[i][k];
+        }
+    }
+
+    int rank = 0;
+    bool noSolution = false;
+    for (int i = 0; i < n; i++)
+    {
+        bool allZero = true;
+        for (int j = 0; j < n; j++)
+            if (fabs(a[i][j]) > EPS) allZero = false;
+
+        if (allZero && fabs(a[i][n]) > EPS) noSolution = true;
+        if (!allZero) rank++;
+    }
+
+    if (noSolution) fout << "\nThe system has NO solution.\n";
+    else if (rank < n) fout << "\nThe system has INFINITE solutions.\n";
+    else
+    {
+        vector<double> x(n);
+        for (int i = n - 1; i >= 0; i--)
+        {
+            x[i] = a[i][n];
+            for (int j = i + 1; j < n; j++) x[i] -= a[i][j] * x[j];
+            x[i] /= a[i][i];
+        }
+
+        fout << "\nThe system has a UNIQUE solution:\n";
+        for (int i = 0; i < n; i++) fout << "x" << i + 1 << " = " << x[i] << "\n";
+    }
+
+    if(i < T) fout << endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 ```
 
 #### Gauss Elimination Input
 ```
-[Add your input format here]
+4
+3
+2 6 0 -11
+6 20 -6 -3
+0 6 -18 -1
+
+3
+5 3 7 4
+3 26 2 9
+7 2 10 5
+
+3
+2 3 4 11
+1 5 7 15
+3 11 13 25
+
+2
+1 1 2
+1 1 3
 ```
 
 #### Gauss Elimination Output
 ```
-[Add your output format here]
+Test Case 1(3X3)
+
+Matrix:
+2.000	6.000	0.000	-11.000	
+6.000	20.000	-6.000	-3.000	
+0.000	6.000	-18.000	-1.000	
+
+The system has NO solution.
+
+Test Case 2(3X3)
+
+Matrix:
+5.000	3.000	7.000	4.000	
+3.000	26.000	2.000	9.000	
+7.000	2.000	10.000	5.000	
+
+The system has INFINITE solutions.
+
+Test Case 3(3X3)
+
+Matrix:
+2.000	3.000	4.000	11.000	
+1.000	5.000	7.000	15.000	
+3.000	11.000	13.000	25.000	
+
+The system has a UNIQUE solution:
+x1 = 2.000
+x2 = -3.000
+x3 = 4.000
+
+Test Case 4(2X2)
+
+Matrix:
+1.000	1.000	2.000	
+1.000	1.000	3.000	
+
+The system has NO solution.
+
 ```
 
 ---
@@ -2720,7 +2860,4 @@ Linear Regression Equation: y = 4.800 + 0.187x
 ```
 
 ---
-
-
-
 
