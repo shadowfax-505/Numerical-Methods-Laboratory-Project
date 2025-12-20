@@ -1143,7 +1143,6 @@ scientific computations.
 
 #### Runge-Kutta 4th Order Code
 ```cpp
-# Add your code here
 #include <bits/stdc++.h>
 using namespace std;
 
