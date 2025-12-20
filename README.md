@@ -1700,6 +1700,25 @@ Integral result: 0.000000
 
 ---
 
+#### newton-backward-interpolation
+#### newton-backward-theory
+[Add your theory content here]
+#### newton-backward-code
+```python
+# Add your code here
+```
+#### newton-backward-input
+```
+[Add your input format here]
+```
+
+#### newton-backward-output
+```
+[Add your output format here]
+```
+
+---
+
 
 
 
