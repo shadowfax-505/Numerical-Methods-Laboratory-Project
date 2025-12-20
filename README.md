@@ -1679,4 +1679,27 @@ Integral result: 0.000000
 
 ---
 
+#### interpolation-methods
+
+#### newton-forward-interpolation
+#### newton-forward-theory
+[Add your theory content here]
+#### newton-forward-code
+```python
+# Add your code here
+```
+#### newton-forward-input
+```
+[Add your input format here]
+```
+
+#### newton-forward-output
+```
+[Add your output format here]
+```
+
+---
+
+
+
 
