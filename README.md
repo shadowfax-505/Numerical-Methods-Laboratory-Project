@@ -2594,22 +2594,113 @@ Estimated error : 0.004987
 #### linear-regression-theory
 [Add your theory content here]
 #### linear-regression-code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if(!fin || !fout)
+    {
+        cout<<"Error"<<endl;
+        return 0;
+    }
+
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin>>n;    
+    vector<double> x(n), y(n);
+
+    for(int i = 0; i < n; i++) fin>>x[i];
+
+    for(int i = 0; i < n; i++) fin>>y[i];
+
+    double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+
+    for (int i = 0; i < n; i++) {
+        sumX += x[i];
+        sumY += y[i];
+        sumXY += x[i] * y[i];
+        sumX2 += x[i] * x[i];
+    }
+
+    double b = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    double a = (sumY - b * sumX) / n;
+
+    fout << fixed << setprecision(3);
+
+    fout<<"Test Case "<<i<<endl;
+
+    fout<<"Number of points: "<<n;
+
+    fout<<"\nx values: ";
+    for(int i=0;i<n;i++) fout << x[i]<<" ";
+
+    fout<<"\ny values: ";
+    for(int i=0;i<n;i++) fout << y[i]<<" ";
+
+    fout<<"\nIntercept(a): "<<a;
+    fout<<"\nSlope(b) :"<<b;
+    fout << "\nLinear Regression Equation: y = " << a << " + " << b << "x" << endl;
+
+    if(i < T) fout<<endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
 ```
 #### linear-regression-input
 ```
-[Add your input format here]
+3
+7
+1 2 3 4 5 6 7
+3 4 4 5 8 9 10
+
+4
+3 9 5 3
+8 6 4 2
+
+4
+4 7 3 1
+6 5 8 3
 ```
 #### linear-regression-output
 ```
-[Add your output format here]
+Test Case 1
+Number of points: 7
+x values: 1.000 2.000 3.000 4.000 5.000 6.000 7.000 
+y values: 3.000 4.000 4.000 5.000 8.000 9.000 10.000 
+Intercept(a): 1.143
+Slope(b) :1.250
+Linear Regression Equation: y = 1.143 + 1.250x
+
+Test Case 2
+Number of points: 4
+x values: 3.000 9.000 5.000 3.000 
+y values: 8.000 6.000 4.000 2.000 
+Intercept(a): 4.167
+Slope(b) :0.167
+Linear Regression Equation: y = 4.167 + 0.167x
+
+Test Case 3
+Number of points: 4
+x values: 4.000 7.000 3.000 1.000 
+y values: 6.000 5.000 8.000 3.000 
+Intercept(a): 4.800
+Slope(b) :0.187
+Linear Regression Equation: y = 4.800 + 0.187x
 ```
-
 ---
-
-
-
 #### Polynomial-regression
 #### polynomial-regression-theory
 [Add your theory content here]
@@ -2625,10 +2716,7 @@ Estimated error : 0.004987
 ```
 [Add your output format here]
 ```
-
----
-   
-    - 
+---     
 #### Transcendental-regression
 #### transcendental-regression-theory
 [Add your theory content here]
