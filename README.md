@@ -1902,17 +1902,108 @@ Interpolated value at x = 1925 is 96.8368
 #### newton-divided-difference-theory
 [Add your theory content here]
 #### newton-divided-difference-code
-```python
-# Add your code here
+```cpp
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if (!fin)
+    {
+        cout << "Error opening input file!" << endl;
+        return 1;
+    }
+
+    int n;
+    fin >> n;                 
+    int m = n + 1;            
+
+    double x[m];
+    double dd[m][m];
+
+
+    for (int i = 0; i < m; i++)
+        fin >> x[i];
+
+    
+    for (int i = 0; i < m; i++)
+        fin >> dd[i][0];
+
+    
+    for (int j = 1; j < m; j++)
+    {
+        for (int i = 0; i < m - j; i++)
+        {
+            dd[i][j] =
+                (dd[i + 1][j - 1] - dd[i][j - 1]) /
+                (x[i + j] - x[i]);
+        }
+    }
+
+    
+    fout << fixed << setprecision(6);
+    fout << "Divided Difference Table:\n";
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m - i; j++)
+            fout << setw(12) << dd[i][j] << " ";
+        fout << "\n";
+    }
+
+    double xp;
+    fin >> xp;
+
+    
+    double P = dd[0][0];
+    double term = 1.0;
+
+    for (int i = 1; i < n; i++)
+    {
+        term *= (xp - x[i - 1]);
+        P += term * dd[0][i];
+    }
+
+
+    double errorFactor = 1.0;
+    for (int i = 0; i < m; i++)
+        errorFactor *= (xp - x[i]);
+
+    double error = errorFactor * dd[0][n];
+
+    fout << "\nInterpolated value at x = " << xp << " : " << P << "\n";
+    fout << "Estimated error : " << error << "\n";
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
 ```
 #### newton-divided-difference-input
 ```
-[Add your input format here]
+3
+2 3 4 5
+0.6931 1.0986 1.3863 1.6094
+3.5
+
 ```
 
 #### newton-divided-difference-output
 ```
-[Add your output format here]
+Divided Difference Table:
+    0.693100     0.405500    -0.058900     0.008867 
+    1.098600     0.287700    -0.032300 
+    1.386300     0.223100 
+    1.609400 
+
+Interpolated value at x = 3.500000 : 1.257175
+Estimated error : 0.004987
 ```
 
 ---
