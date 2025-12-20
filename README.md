@@ -1573,18 +1573,254 @@ x3 = -1.000
 [Add your theory content here]
 
 #### Matrix Inversion Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const double EPS = 1e-9;
+
+void printMatrix(ofstream& fout,vector<vector<double>> &A)
+{
+    for (auto &row : A)
+    {
+        for (double v : row)
+        fout << setw(10) << fixed << setprecision(3) << v << " ";
+        fout <<endl;
+    }
+    fout <<endl;
+}
+
+double Determinant(vector<vector<double>> A, int n)
+{
+    double det = 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        int pivot = i;
+        for (int j = i + 1; j < n; j++)
+        if (fabs(A[j][i]) > fabs(A[pivot][i])) pivot = j;
+
+        if (fabs(A[pivot][i]) < EPS) return 0;
+
+        if (pivot != i)
+        {
+            swap(A[pivot], A[i]);
+            det *= -1;
+        }
+
+        det *= A[i][i];
+
+        for (int j = i + 1; j < n; j++)
+        {
+            double factor = A[j][i] / A[i][i];
+            for (int k = i; k < n; k++) A[j][k] -= factor * A[i][k];
+        }
+    }
+    return det;
+}
+
+void CheckConsistency(ofstream& fout,vector<vector<double>> A, int n)
+{
+    int m = n + 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        int pivot = i;
+        for (int j = i; j < n; j++)
+        if (fabs(A[j][i]) > fabs(A[pivot][i])) pivot = j;
+
+        if (fabs(A[pivot][i]) < EPS) continue;
+
+        swap(A[pivot], A[i]);
+
+        for (int j = i + 1; j < n; j++)
+        {
+            double factor = A[j][i] / A[i][i];
+            for (int k = i; k < m; k++) A[j][k] -= factor * A[i][k];
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        bool allZero = true;
+        for (int j = 0; j < n; j++)
+            if (fabs(A[i][j]) > EPS) allZero = false;
+
+        if (allZero && fabs(A[i][n]) > EPS)
+        {
+            fout <<"No solution (Inconsistent system)"<<endl;
+            return;
+        }
+    }
+    fout <<"Infinitely many solutions (Consistent system)"<<endl;
+}
+
+vector<vector<double>> Transpose(vector<vector<double>> &A, int n) {
+    vector<vector<double>> T(n, vector<double>(n));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) T[j][i] = A[i][j];
+    return T;
+}
+
+vector<vector<double>> Inverse(vector<vector<double>> &A, int n) {
+    vector<vector<double>> I(n, vector<double>(2 * n));
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) I[i][j] = A[i][j];
+        I[i][i + n] = 1;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        int pivot = i;
+        for (int j = i; j < n; j++)
+            if (fabs(I[j][i]) > fabs(I[pivot][i])) pivot = j;
+
+        swap(I[pivot], I[i]);
+
+        double div = I[i][i];
+        for (int j = 0; j < 2 * n; j++) I[i][j] /= div;
+
+        for (int j = 0; j < n; j++)
+        {
+            if (j == i) continue;
+            double factor = I[j][i];
+            for (int k = 0; k < 2 * n; k++) I[j][k] -= factor * I[i][k];
+        }
+    }
+
+    vector<vector<double>> inv(n, vector<double>(n));
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) inv[i][j] = I[i][j + n];
+
+    return inv;
+}
+
+vector<double> SolveX(vector<vector<double>> &inv, vector<double> &B, int n)
+{
+    vector<double> X(n, 0);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) X[i] += inv[i][j] * B[j];
+    return X;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin >> n;
+
+    vector<vector<double>> A(n, vector<double>(n));
+    vector<vector<double>> Aug(n, vector<double>(n + 1));
+    vector<double> B(n);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j <= n; j++) fin >> Aug[i][j];
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) A[i][j] = Aug[i][j];
+        B[i] = Aug[i][n];
+    }
+
+    fout << "Test Case " << i <<endl;
+
+    double det = Determinant(A, n);
+    fout << "\nDeterminant = " << det << "\n\n";
+
+    if (fabs(det) < EPS)
+    {
+        fout << "Determinant is zero\n";
+        CheckConsistency(fout, Aug, n);
+    }
+    else
+    {
+        fout << "Transpose of A:\n";
+        auto T = Transpose(A, n);
+        printMatrix(fout, T);
+
+        fout << "Inverse of A:\n";
+        auto I = Inverse(A, n);
+        printMatrix(fout, I);
+
+        fout << "Solution Vector X:\n";
+        auto X = SolveX(I, B, n);
+        for (int i = 0; i < n; i++)
+            fout << "x" << i + 1 << " = " << X[i] <<endl;
+    }
+
+    if(i < T) fout<<endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
 ```
 
 #### Matrix Inversion Input
 ```
-[Add your input format here]
+3
+3
+2 6 0 -11
+6 20 -6 -3
+0 6 -18 -1
+
+3
+5 3 7 4
+3 26 2 9
+7 2 10 5
+
+3
+2 3 4 11
+1 5 7 15
+3 11 13 25
 ```
 
 #### Matrix Inversion Output
 ```
-[Add your output format here]
+Test Case 1
+
+Determinant = 0
+
+Determinant is zero
+No solution (Inconsistent system)
+
+Test Case 2
+
+Determinant = 0
+
+Determinant is zero
+Infinitely many solutions (Consistent system)
+
+Test Case 3
+
+Determinant = -16
+
+Transpose of A:
+     2.000      1.000      3.000 
+     3.000      5.000     11.000 
+     4.000      7.000     13.000 
+
+Inverse of A:
+     0.750     -0.312     -0.063 
+    -0.500     -0.875      0.625 
+     0.250      0.812     -0.437 
+
+Solution Vector X:
+x1 = 2.000
+x2 = -3.000
+x3 = 4.000
+
 ```
 
 ---
