@@ -1738,6 +1738,105 @@ Integral result: 0.000000
 
 ---
 
+#### numerical-differentiation
+
+#### differentiation-forward-interpolation
+#### differentiation-forward-theory
+[Add your theory content here]
+#### differentiation-forward-code
+```python
+# Add your code here
+```
+#### differentiation-forward-input
+```
+[Add your input format here]
+```
+#### differentiation-forward-output
+```
+[Add your output format here]
+```
+
+---
+
+
+
+#### differentiation-backward-interpolation
+#### differentiation-backward-theory
+[Add your theory content here]
+#### differentiation-backward-code
+```python
+# Add your code here
+```
+#### differentiation-backward-input
+```
+[Add your input format here]
+```
+#### differentiation-backward-output
+```
+[Add your output format here]
+```
+
+---
+
+
+#### curve-fitting--regression
+#### linear-regression
+#### linear-regression-theory
+[Add your theory content here]
+#### linear-regression-code
+```python
+# Add your code here
+```
+#### linear-regression-input
+```
+[Add your input format here]
+```
+#### linear-regression-output
+```
+[Add your output format here]
+```
+
+---
+
+
+
+#### polynomial-regression
+#### polynomial-regression-theory
+[Add your theory content here]
+#### polynomial-regression-code
+```python
+# Add your code here
+```
+#### polynomial-regression-input
+```
+[Add your input format here]
+```
+#### polynomial-regression-output
+```
+[Add your output format here]
+```
+
+---
+   
+    - 
+#### transcendental-regression
+#### transcendental-regression-theory
+[Add your theory content here]
+#### transcendental-regression-code
+```python
+# Add your code here
+```
+#### transcendental-regression-input
+```
+[Add your input format here]
+```
+#### transcendental-regression-output
+```
+[Add your output format here]
+```
+
+---
+
 
 
 
