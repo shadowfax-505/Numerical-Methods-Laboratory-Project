@@ -1118,21 +1118,125 @@ Root 1 = 2.000000 (Iterations: 6)
 ### Runge-Kutta 4th Order Method
 
 #### Runge-Kutta 4th Order Theory
-[Add your theory content here]
+
+
+The Runge-Kutta 4th Order (RK4) method is a numerical technique used to
+solve first-order ordinary differential equations of the form:
+
+dy/dx = f(x, y)
+
+Given an initial value y(x₀) = y₀, RK4 estimates the value of y at the
+next point xₙ₊₁ = xₙ + h using four intermediate slopes:
+
+k₁ = h · f(xₙ, yₙ)  
+k₂ = h · f(xₙ + h/2, yₙ + k₁/2)  
+k₃ = h · f(xₙ + h/2, yₙ + k₂/2)  
+k₄ = h · f(xₙ + h, yₙ + k₃)
+
+The next value of y is calculated as:
+
+yₙ₊₁ = yₙ + (k₁ + 2k₂ + 2k₃ + k₄) / 6
+
+RK4 provides high accuracy and is widely used in engineering and
+scientific computations.
+
 
 #### Runge-Kutta 4th Order Code
-```python
+```cpp
 # Add your code here
-```
+#include <bits/stdc++.h>
+using namespace std;
+
+float dydx(float x, float y)
+{
+    return (x - y) / 2;
+}
+
+
+float rungeKutta(float x0, float y0, float x, float h)
+{
+    int n = (int)((x - x0) / h);
+
+    float k1, k2, k3, k4;
+    float y = y0;
+
+    for (int i = 1; i <= n; i++)
+    {
+        k1 = h * dydx(x0, y);
+        k2 = h * dydx(x0 + h / 2, y + k1 / 2);
+        k3 = h * dydx(x0 + h / 2, y + k2 / 2);
+        k4 = h * dydx(x0 + h, y + k3);
+
+        y = y + (k1 + 2*k2 + 2*k3 + k4) / 6;
+        x0 = x0 + h;
+    }
+
+    return y;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if (!fin)
+    {
+        cout << "Error: input.txt file not found!" << endl;
+        return 1;
+    }
+
+    float x0, y0, x, h;
+    fin >> x0 >> y0 >> x >> h;
+
+    float result = rungeKutta(x0, y0, x, h);
+
+    fout << "--------------------------------------------\n";
+    fout << " Runge-Kutta 4th Order Method (RK4)\n";
+    fout << " Differential Equation: dy/dx = (x - y) / 2\n";
+    fout << "--------------------------------------------\n\n";
+
+    fout << fixed << setprecision(4);
+    fout << "Initial value of x (x0)      : " << x0 << endl;
+    fout << "Initial value of y (y0)      : " << y0 << endl;
+    fout << "Value of x required          : " << x  << endl;
+    fout << "Step size (h)                : " << h  << endl;
+
+    fout << "\n--------------------------------------------\n";
+    fout << " Result\n";
+    fout << "--------------------------------------------\n";
+    fout << "Approximate value of y at x = " << x
+         << " is: " << result << endl;
+    fout << "--------------------------------------------\n";
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 
 #### Runge-Kutta 4th Order Input
 ```
-[Add your input format here]
+0 1 2 0.2
 ```
 
 #### Runge-Kutta 4th Order Output
 ```
-[Add your output format here]
+--------------------------------------------
+ Runge-Kutta 4th Order Method (RK4)
+ Differential Equation: dy/dx = (x - y) / 2
+--------------------------------------------
+
+Initial value of x (x0)      : 0.0000
+Initial value of y (y0)      : 1.0000
+Value of x required          : 2.0000
+Step size (h)                : 0.2000
+
+--------------------------------------------
+ Result
+--------------------------------------------
+Approximate value of y at x = 2.0000 is: 1.1036
+--------------------------------------------
 ```
 
 ---
