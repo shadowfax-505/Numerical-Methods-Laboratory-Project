@@ -1793,17 +1793,107 @@ Interpolated value at x = 52 is 0.788003
 #### newton-backward-theory
 [Add your theory content here]
 #### newton-backward-code
-```python
-# Add your code here
+```cpp
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+float u_cal(float u, int n)
+{
+    float res = u;
+    for (int i = 1; i < n; i++)
+        res *= (u + i);
+    return res;
+}
+
+
+int fact(int n)
+{
+    int f = 1;
+    for (int i = 2; i <= n; i++)
+        f *= i;
+    return f;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    if (!fin) {
+        fout << "Error opening input file!" << endl;
+        return 0;
+    }
+
+    int n;
+    fin >> n;
+
+    vector<float> x(n);
+    for (int i = 0; i < n; i++)
+        fin >> x[i];
+
+    vector<vector<float>> y(n, vector<float>(n));
+
+    for (int i = 0; i < n; i++)
+        fin >> y[i][0];
+
+    float value;
+    fin >> value;
+
+    fin.close();
+
+    
+    for (int i = 1; i < n; i++) {
+        for (int j = n - 1; j >= i; j--) {
+            y[j][i] = y[j][i - 1] - y[j - 1][i - 1];
+        }
+    }
+
+
+    fout << "Backward Difference Table\n\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++)
+            fout << setw(8) << y[i][j] << "\t";
+        fout << endl;
+    }
+
+    
+    float u = (value - x[n - 1]) / (x[1] - x[0]);
+    float sum = y[n - 1][0];
+
+    for (int i = 1; i < n; i++) {
+        sum += (u_cal(u, i) * y[n - 1][i]) / fact(i);
+    }
+
+    fout << "\nInterpolated value at x = " << value
+         << " is " << sum << endl;
+
+    fout.close();
+
+    return 0;
+}
+
 ```
 #### newton-backward-input
 ```
-[Add your input format here]
+5
+1891 1901 1911 1921 1931
+46 66 81 93 101
+1925
 ```
 
 #### newton-backward-output
 ```
-[Add your output format here]
+Backward Difference Table
+
+      46	
+      66	      20	
+      81	      15	      -5	
+      93	      12	      -3	       2	
+     101	       8	      -4	      -1	      -3	
+
+Interpolated value at x = 1925 is 96.8368
 ```
 
 ---
