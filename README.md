@@ -1679,7 +1679,7 @@ Integral result: 0.000000
 
 ---
 
-#### interpolation-methods
+#### Interpolation-methods
 
 #### newton-forward-interpolation
 #### newton-forward-theory
