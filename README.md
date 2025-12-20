@@ -1247,18 +1247,322 @@ The system has NO solution(Inconsistent).
 [Add your theory content here]
 
 #### LU Decomposition Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const double EPS = 1e-9;
+
+void LUdecomposition(vector<vector<double>> A, vector<vector<double>> &L, vector<vector<double>> &U, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = i; k < n; k++)
+        {
+            double sum = 0;
+            for (int j = 0; j < i; j++)
+                sum += (L[i][j] * U[j][k]);
+            U[i][k] = A[i][k] - sum;
+        }
+
+        for (int k = i; k < n; k++)
+        {
+            if (i == k)
+                L[i][i] = 1;
+            else {
+                double sum = 0;
+                for (int j = 0; j < i; j++)
+                    sum += (L[k][j] * U[j][i]);
+                if (fabs(U[i][i]) < 1e-9) cout << "Division by zero detected during LU decomposition!" << endl;
+                L[k][i] = (A[k][i] - sum) / U[i][i];
+            }
+        }
+    }
+}
+
+vector<double> forwardSub(const vector<vector<double>>& L, const vector<double>& b)
+{
+    int n = b.size();
+    vector<double> y(n);
+    for (int i = 0; i < n; i++)
+    {
+        double sum = 0;
+        for (int j = 0; j < i; j++) sum += L[i][j] * y[j];
+        y[i] = b[i] - sum;
+    }
+    return y;
+}
+
+vector<double> backwardSub(const vector<vector<double>>& U, const vector<double>& y)
+{
+    int n = y.size();
+    vector<double> x(n);
+    for (int i = n - 1; i >= 0; i--)
+    {
+        double sum = 0;
+        for (int j = i + 1; j < n; j++) sum += U[i][j] * x[j];
+        x[i] = (y[i] - sum) / U[i][i];
+    }
+    return x;
+}
+
+int matrixRank(vector<vector<double>> M)
+{
+    if (M.empty()) return 0;
+    int rows = M.size();
+    int cols = M[0].size();
+    int rank = 0;
+
+    for (int col = 0; col < cols; col++)
+    {
+        int pivot = -1;
+        for (int i = rank; i < rows; i++)
+        {
+            if (col < M[i].size() && fabs(M[i][col]) > EPS)
+            {
+                pivot = i;
+                break;
+            }
+        }
+        if (pivot == -1) continue;
+
+        swap(M[pivot], M[rank]);
+        double div = M[rank][col];
+        for (int j = col; j < cols; j++)
+            M[rank][j] /= div;
+
+        for (int i = 0; i < rows; i++)
+        {
+            if (i != rank)
+            {
+                double factor = (col < M[i].size()) ? M[i][col] : 0;
+                for (int j = col; j < cols; j++)
+                    if (j < M[i].size()) M[i][j] -= factor * M[rank][j];
+            }
+        }
+        rank++;
+    }
+    return rank;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin>>n;
+
+    vector<vector<double>> A(n, vector<double>(n));
+    vector<double> B(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) fin >> A[i][j];
+        fin >> B[i];
+    }
+
+    vector<vector<double>> Aug(n, vector<double>(n+1));
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) Aug[i][j] = A[i][j];
+        Aug[i][n] = B[i];
+    }
+
+    vector<vector<double>> L(n, vector<double>(n, 0));
+    vector<vector<double>> U(n, vector<double>(n, 0));
+
+    int rankA = matrixRank(A);
+    int rankAug = matrixRank(Aug);
+
+    fout << "Test Case " << i << endl;
+    fout << fixed << setprecision(3); 
+
+    fout<<"Augmented Matrix:\n";
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++) fout << A[i][j] << "\t";
+        fout << B[i] <<endl;
+    }
+
+    LUdecomposition(A, L, U, n);
+
+    fout << "\nLower Triangular Matrix (L):\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) fout << L[i][j] << "\t";
+        fout << endl;
+    }
+
+    fout << "\nUpper Triangular Matrix (U):\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++) fout << U[i][j] << "\t";
+        fout << endl;
+    }
+
+
+    if (rankA != rankAug) fout << "\nThe system is INCONSISTENT (No solution).\n";
+    else if (rankA < n) fout << "\nThe system has INFINITE solutions.\n";
+    else
+    {
+        vector<double> y = forwardSub(L, B);
+        vector<double> x = backwardSub(U, y);  
+
+        fout<< "\nValues of Y:\n";
+        for(int i = 0; i < n; i++) fout << "y" << i+1 << " = "<< y[i] <<endl;
+
+        fout << "\nUnique solution:\n";
+        for (int i = 0; i < n; i++) fout << "x" << i+1 << " = " << x[i] << endl;
+    }
+
+    if(i < T) fout<<endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
 ```
 
 #### LU Decomposition Input
 ```
-[Add your input format here]
+5
+3
+2 6 0 -11
+6 20 -6 -3
+0 6 -18 -1
+
+3
+5 3 7 4
+3 26 2 9
+7 2 10 5
+
+3
+2 3 4 11
+1 5 7 15
+3 11 13 25
+
+2
+1 1 2
+1 1 3
+
+3
+2 1 -1 8
+-3 -1 2 -11
+-2 1 2 -3
 ```
 
 #### LU Decomposition Output
 ```
-[Add your output format here]
+Test Case 1
+Augmented Matrix:
+2.000	6.000	0.000	-11.000
+6.000	20.000	-6.000	-3.000
+0.000	6.000	-18.000	-1.000
+
+Lower Triangular Matrix (L):
+1.000	0.000	0.000	
+3.000	1.000	0.000	
+0.000	3.000	1.000	
+
+Upper Triangular Matrix (U):
+2.000	6.000	0.000	
+0.000	2.000	-6.000	
+0.000	0.000	0.000	
+
+The system is INCONSISTENT (No solution).
+
+Test Case 2
+Augmented Matrix:
+5.000	3.000	7.000	4.000
+3.000	26.000	2.000	9.000
+7.000	2.000	10.000	5.000
+
+Lower Triangular Matrix (L):
+1.000	0.000	0.000	
+0.600	1.000	0.000	
+1.400	-0.091	1.000	
+
+Upper Triangular Matrix (U):
+5.000	3.000	7.000	
+0.000	24.200	-2.200	
+0.000	0.000	0.000	
+
+The system has INFINITE solutions.
+
+Test Case 3
+Augmented Matrix:
+2.000	3.000	4.000	11.000
+1.000	5.000	7.000	15.000
+3.000	11.000	13.000	25.000
+
+Lower Triangular Matrix (L):
+1.000	0.000	0.000	
+0.500	1.000	0.000	
+1.500	1.857	1.000	
+
+Upper Triangular Matrix (U):
+2.000	3.000	4.000	
+0.000	3.500	5.000	
+0.000	0.000	-2.286	
+
+Values of Y:
+y1 = 11.000
+y2 = 9.500
+y3 = -9.143
+
+Unique solution:
+x1 = 2.000
+x2 = -3.000
+x3 = 4.000
+
+Test Case 4
+Augmented Matrix:
+1.000	1.000	2.000
+1.000	1.000	3.000
+
+Lower Triangular Matrix (L):
+1.000	0.000	
+1.000	1.000	
+
+Upper Triangular Matrix (U):
+1.000	1.000	
+0.000	0.000	
+
+The system is INCONSISTENT (No solution).
+
+Test Case 5
+Augmented Matrix:
+2.000	1.000	-1.000	8.000
+-3.000	-1.000	2.000	-11.000
+-2.000	1.000	2.000	-3.000
+
+Lower Triangular Matrix (L):
+1.000	0.000	0.000	
+-1.500	1.000	0.000	
+-1.000	4.000	1.000	
+
+Upper Triangular Matrix (U):
+2.000	1.000	-1.000	
+0.000	0.500	0.500	
+0.000	0.000	-1.000	
+
+Values of Y:
+y1 = 8.000
+y2 = 1.000
+y3 = 1.000
+
+Unique solution:
+x1 = 2.000
+x2 = 3.000
+x3 = -1.000
 ```
 
 ---
