@@ -1719,6 +1719,25 @@ Integral result: 0.000000
 
 ---
 
+#### newton-divided-difference-interpolation
+#### newton-divided-difference-theory
+[Add your theory content here]
+#### newton-divided-difference-code
+```python
+# Add your code here
+```
+#### newton-divided-difference-input
+```
+[Add your input format here]
+```
+
+#### newton-divided-difference-output
+```
+[Add your output format here]
+```
+
+---
+
 
 
 
