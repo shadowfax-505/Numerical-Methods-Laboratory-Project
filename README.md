@@ -1053,18 +1053,190 @@ Root 1 = 2.000000 (Iterations: 6)
 [Add your theory content here]
 
 #### Gauss Jordan Code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const double EPS = 1e-9;
+
+int main()
+{  
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+    
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin >> n;
+
+    vector<vector<double>> a(n, vector<double>(n + 1));
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j <= n; j++) fin >> a[i][j];
+
+    fout<<"Test Case "<<i<<"("<<n<<"X"<<n<<")"<<"\n\n";
+    fout<<fixed<<setprecision(3);
+
+    fout<<"Matrix:\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= n; j++) fout << a[i][j] << "\t";
+        fout << endl;
+    }
+
+    int rank = 0;
+
+    for (int col = 0; col < n; col++)
+    {
+        int pivot = rank;
+        for (int i = rank; i < n; i++)
+        {
+            if (fabs(a[i][col]) > fabs(a[pivot][col])) pivot = i;
+        }
+
+        if (fabs(a[pivot][col]) < EPS) continue;
+
+        swap(a[pivot], a[rank]);
+
+        double div = a[rank][col];
+        for (int j = 0; j <= n; j++) a[rank][j] /= div;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (i != rank)
+            {
+                double factor = a[i][col];
+                for (int j = 0; j <= n; j++) a[i][j] -= factor * a[rank][j];
+            }
+        }
+        rank++;
+    }
+
+    bool noSolution = false;
+    for (int i = 0; i < n; i++)
+    {
+        bool allZero = true;
+        for (int j = 0; j < n; j++)
+            if (fabs(a[i][j]) > EPS) allZero = false;
+            if (allZero && fabs(a[i][n]) > EPS) noSolution = true;
+    }
+
+    fout<<endl;
+
+    fout<<"Reduced Row Echelon Form:\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j <= n; j++) fout << a[i][j]<<"\t";
+        fout<<endl;
+    }
+
+    if (noSolution) fout <<"\nThe system has NO solution(Inconsistent).\n";
+    else if (rank < n) fout <<"\nThe system has INFINITE solutions.\n";
+    else
+    {
+        fout << "\nSolution:\n";
+        for (int i = 0; i < n; i++) fout << "x" << i + 1 << " = "<< a[i][n] << "\n";
+        fout << "\nThe system has a UNIQUE solution.\n";
+    }
+
+    if(i < T) fout << endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 ```
 
 #### Gauss Jordan Input
 ```
-[Add your input format here]
+4
+3
+2 6 0 -11
+6 20 -6 -3
+0 6 -18 -1
+
+3
+5 3 7 4
+3 26 2 9
+7 2 10 5
+
+3
+2 3 4 11
+1 5 7 15
+3 11 13 25
+
+2
+1 1 2
+1 1 3
 ```
 
 #### Gauss Jordan Output
 ```
-[Add your output format here]
+Test Case 1(3X3)
+
+Matrix:
+2.000	6.000	0.000	-11.000	
+6.000	20.000	-6.000	-3.000	
+0.000	6.000	-18.000	-1.000	
+
+Reduced Row Echelon Form:
+1.000	0.000	9.000	0.056	
+0.000	1.000	-3.000	-0.167	
+0.000	0.000	-0.000	-10.111	
+
+The system has NO solution(Inconsistent).
+
+Test Case 2(3X3)
+
+Matrix:
+5.000	3.000	7.000	4.000	
+3.000	26.000	2.000	9.000	
+7.000	2.000	10.000	5.000	
+
+Reduced Row Echelon Form:
+1.000	0.000	1.455	0.636	
+0.000	1.000	-0.091	0.273	
+0.000	0.000	-0.000	-0.000	
+
+The system has INFINITE solutions.
+
+Test Case 3(3X3)
+
+Matrix:
+2.000	3.000	4.000	11.000	
+1.000	5.000	7.000	15.000	
+3.000	11.000	13.000	25.000	
+
+Reduced Row Echelon Form:
+1.000	0.000	0.000	2.000	
+-0.000	1.000	0.000	-3.000	
+0.000	0.000	1.000	4.000	
+
+Solution:
+x1 = 2.000
+x2 = -3.000
+x3 = 4.000
+
+The system has a UNIQUE solution.
+
+Test Case 4(2X2)
+
+Matrix:
+1.000	1.000	2.000	
+1.000	1.000	3.000	
+
+Reduced Row Echelon Form:
+1.000	1.000	2.000	
+0.000	0.000	1.000	
+
+The system has NO solution(Inconsistent).
+
 ```
 
 ---
