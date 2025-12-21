@@ -3433,16 +3433,200 @@ Find a by taking antilog of A.
 
 Write the fitted transcendental curve.
 #### transcendental-regression-code
-```python
-# Add your code here
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+pair<double, double>PolyRegression(vector<double>&x, vector<double>&y)
+{
+    int n = x.size();
+    double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+
+    for (int i = 0; i < n; i++) {
+        sumX += x[i];
+        sumY += y[i];
+        sumXY += x[i] * y[i];
+        sumX2 += x[i] * x[i];
+    }
+
+    double B = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+    double A = (sumY - B * sumX) / n;
+
+    return {A, B};
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin >> T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int Type;
+    fin>>Type;  
+
+    int n;
+    fin>>n;    
+    vector<double> x(n), y(n);
+
+    for(int i = 0; i < n; i++) fin>>x[i];
+    for(int i = 0; i < n; i++) fin>>y[i];
+
+    fout << fixed << setprecision(3);
+    fout << "Test Case " << i << endl;
+    fout << "Equation Type: " << Type << endl;
+    fout << "Number of points: " << n << endl;
+
+    fout<<"x values: ";
+    for(int i=0;i<n;i++) fout << x[i]<<" ";
+
+    fout<<endl;
+
+    fout<<"y values: ";
+    for(int i=0;i<n;i++) fout << y[i]<<" ";
+
+    vector<double>X(n), Y(n);
+
+    pair<double,double> res;
+    double A, B, a, b, k;
+
+    switch(Type)
+    {
+    case 1:
+    {
+        for(int i = 0; i < n; i++)
+        {
+            Y[i] = log(y[i]);
+            X[i] = log(x[i]);
+        }
+
+        res = PolyRegression(X, Y);
+        A = res.first;
+        B = res.second;
+
+        a = exp(A);
+        b = B;
+
+        fout << endl;
+        fout << "a: " << a << endl;
+        fout << "b: " << b << endl;
+
+        fout << "Transcendental Equation: ";
+        fout << "y = " << a << "*x^" << "(" << b << ")" << endl;
+        break;
+    }
+
+    case 2:
+    {
+        for(int i = 0; i < n; i++)
+        {
+            Y[i] = log(y[i]);
+            X[i] = x[i];
+        }
+
+        res = PolyRegression(X, Y);
+        A = res.first;
+        B = res.second;
+
+        a = exp(A);
+        k = B;
+
+        fout << endl;
+        fout << "a: " << a << endl;
+        fout << "k: " << k << endl;
+
+        fout << "Transcendental Equation: ";
+        fout << "y = " << a << "*e^(" << k << "*x)" << endl;
+        break;
+    }
+
+    case 3:
+    {
+        for(int i = 0; i < n; i++)
+        {
+            Y[i] = y[i];
+            X[i] = exp(x[i] / 4.0);
+        }
+
+        res = PolyRegression(X, Y);
+        a = res.first;
+        b = res.second;
+
+        fout << endl;
+        fout << "a: " << a << endl;
+        fout << "b: " << b << endl;
+
+        fout << "Transcendental Equation: ";
+        fout << "y = " << a << " + " << b << "*e^(x/4.0)" << endl;
+        break;
+    }
+
+    default:
+    {
+        fout << "Invalid Type." << endl;
+        break;
+    }
+    }
+
+    if(i < T) fout<<endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 ```
 #### transcendental-regression-input
 ```
-[Add your input format here]
+3
+1
+4
+2 3 4 5
+8 27 64 125
+
+2
+5
+1 2 3 4 5
+2.7 7.4 20.1 54.6 148.4
+
+3
+5
+1 2 3 4 5
+50 80 96 120 145
 ```
 #### transcendental-regression-output
 ```
-[Add your output format here]
+Test Case 1
+Equation Type: 1
+Number of points: 4
+x values: 2.000 3.000 4.000 5.000 
+y values: 8.000 27.000 64.000 125.000 
+a: 1.000
+b: 3.000
+Transcendental Equation: y = 1.000*x^(3.000)
+
+Test Case 2
+Equation Type: 2
+Number of points: 5
+x values: 1.000 2.000 3.000 4.000 5.000 
+y values: 2.700 7.400 20.100 54.600 148.400 
+a: 0.996
+k: 1.001
+Transcendental Equation: y = 0.996*e^(1.001*x)
+
+Test Case 3
+Equation Type: 3
+Number of points: 5
+x values: 1.000 2.000 3.000 4.000 5.000 
+y values: 50.000 80.000 96.000 120.000 145.000 
+a: 5.749
+b: 41.059
+Transcendental Equation: y = 5.749 + 41.059*e^(x/4.0)
 ```
 
 ---
