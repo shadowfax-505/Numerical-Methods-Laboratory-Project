@@ -3278,7 +3278,7 @@ int main()
     {
     int m, deg;
     fin >> m >> deg;
-
+    
     int n = deg + 1;  
 
     vector<double> x(m), y(m);
@@ -3301,13 +3301,13 @@ int main()
 
     vector<double> coeff = gaussianElimination(A, B);
 
-    fout << "Test Case " << i <<"\n\n";
+    fout << "Test Case " << i << endl;
     fout << "Data Points: " << m << endl;
     fout << "Polynomial Degree: " << deg << endl;
 
-    fout << endl;
+    fout << "x values: ";
     for (int i = 0; i < m; i++) fout << x[i] << " ";
-    fout << endl;
+    fout << "\ny values: ";
     for (int i = 0; i < m; i++) fout << y[i] << " "; 
     fout << endl;
 
@@ -3350,12 +3350,10 @@ int main()
 #### polynomial-regression-output
 ```
 Test Case 1
-
 Data Points: 5
 Polynomial Degree: 2
-
-1 2 3 4 5 
-6 11 18 27 38 
+x values: 1 2 3 4 5 
+y values: 6 11 18 27 38 
 
 Coefficients:
 a[0] = 3.00
@@ -3366,12 +3364,10 @@ Fitted Polynomial:
 y = 3.00 + 2.00x + 1.00x^2
 
 Test Case 2
-
 Data Points: 5
 Polynomial Degree: 2
-
-3.00 4.00 5.00 6.00 7.00 
-2.50 3.20 3.80 6.50 11.50 
+x values: 3.00 4.00 5.00 6.00 7.00 
+y values: 2.50 3.20 3.80 6.50 11.50 
 
 Coefficients:
 a[0] = 12.43
