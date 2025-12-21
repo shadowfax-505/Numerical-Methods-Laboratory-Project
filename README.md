@@ -1028,7 +1028,28 @@ Root 1 = 2.000000 (Iterations: 6)
 ### Gauss Elimination Method
 
 #### Gauss Elimination Theory
-[Add your theory content here]
+The Gauss Elimination Method is used to solve a system of linear equations by transforming the system into an equivalent upper triangular form using matrix operations. 
+
+A system of linear equations
+a11 x1 + a12 x2 + … + a1n xn = b1
+a21 x1 + a22 x2 + … + a2n xn = b2
+.
+.
+an1 x1 + an2 x2 + … + ann xn = bn
+is written in augmented matrix form as
+[ a11 a12 … a1n | b1 ]
+[ a21 a22 … a2n | b2 ]
+[ .   .   .   . | .  ]
+[ an1 an2 … ann | bn ] 
+
+By applying elementary row operations, the augmented matrix is reduced to an upper triangular (row-echelon) form
+[ a11  a12  …  a1n  | b1  ]
+[ 0    a22' …  a2n' | b2' ]
+[ 0    0    …  a3n' | b3' ]
+[ 0    0    …  ann' | bn' ] 
+
+Once the matrix is in upper triangular form, the solution of the system is obtained by back substitution, starting from the last equation and proceeding upward. 
+
 
 #### Gauss Elimination Code
 ```cpp
