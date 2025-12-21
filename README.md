@@ -2526,7 +2526,45 @@ Interpolated value at x = 52 is 0.788003
 
 #### Newton-backward-interpolation
 #### newton-backward-theory
-[Add your theory content here]
+ Newton's Backward Interpolation Method
+
+Newton's backward interpolation is a numerical method designed to approximate values located near the END of a dataset. It strictly requires the data points to be spaced at equal intervals.
+
+Formula:
+y(x) = y_n + p * (nabla y_n) + (p(p+1)/2!) * (nabla^2 y_n) + ...
+
+ALGORITHM: Newton’s Forward Interpolation
+
+1.Read the number of data points n.
+
+2.Read the equally spaced values of x and corresponding values of y.
+
+3.Construct the forward difference table using the given y values.
+
+4.Read the value of x for which interpolation is required.
+
+5.Compute the step size h = x1 − x0.
+
+6.Compute u = (x − x0) / h.
+
+7.Initialize result = y0.
+
+8.For i = 1 to n − 1:
+
+Compute term = (u(u−1)(u−2)…)/(i!)
+
+9.Multiply term with the i-th forward difference.
+
+10.Add the term to result.
+
+11.Output the interpolated value.
+
+
+
+
+
+
+
 #### newton-backward-code
 ```cpp
 
