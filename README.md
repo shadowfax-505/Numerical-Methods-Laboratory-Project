@@ -2989,7 +2989,7 @@ Substitute the forward differences in the formula.
 
 Compute the approximate derivative value.
 #### differentiation-forward-code
-```python
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -3032,6 +3032,8 @@ int main()
 
     fout<<"Test Case " << i << endl;
     fout << "Number of points: " << n << endl;
+
+    fout << fixed << setprecision(3);
     fout<<"x values: ";
     for (int i = 0; i < n; i++) fout << x[i] << " ";
     fout<<endl;
@@ -3063,6 +3065,7 @@ int main()
     return 0;
 }
 
+
 ```
 #### differentiation-forward-input
 ```
@@ -3081,35 +3084,35 @@ int main()
 ```
 Test Case 1
 Number of points: 6
-x values: 1.5 2 2.5 3 3.5 4 
-y values: 3.375 7 13.625 24 38.875 59 
-Step size(h): 0.5
-Differentiation point: 1.5
-Derivative: 4.75
+x values: 1.500 2.000 2.500 3.000 3.500 4.000 
+y values: 3.375 7.000 13.625 24.000 38.875 59.000 
+Step size(h): 0.500
+Differentiation point: 1.500
+Derivative: 4.750
 
 Forward Difference Table (Matrix Form):
- 1.5	       3.375	       3.625	           3	        0.75	           0	           0	
-   2	           7	       6.625	        3.75	        0.75	           0	
- 2.5	      13.625	      10.375	         4.5	        0.75	
-   3	          24	      14.875	        5.25	
- 3.5	      38.875	      20.125	
-   4	          59	
+1.500	       3.375	       3.625	       3.000	       0.750	       0.000	       0.000	
+2.000	       7.000	       6.625	       3.750	       0.750	       0.000	
+2.500	      13.625	      10.375	       4.500	       0.750	
+3.000	      24.000	      14.875	       5.250	
+3.500	      38.875	      20.125	
+4.000	      59.000	
 
 Test Case 2
 Number of points: 6
-x values: 1 1.2 1.4 1.6 1.8 2 
-y values: 0 0.128 0.544 1.296 2.432 4 
-Step size(h): 0.2
-Differentiation point: 1.1
-Derivative: 0.63
+x values: 1.000 1.200 1.400 1.600 1.800 2.000 
+y values: 0.000 0.128 0.544 1.296 2.432 4.000 
+Step size(h): 0.200
+Differentiation point: 1.100
+Derivative: 0.630
 
 Forward Difference Table (Matrix Form):
-   1	           0	       0.128	       0.288	       0.048	           0	           0	
- 1.2	       0.128	       0.416	       0.336	       0.048	           0	
- 1.4	       0.544	       0.752	       0.384	       0.048	
- 1.6	       1.296	       1.136	       0.432	
- 1.8	       2.432	       1.568	
-   2	           4	
+1.000	       0.000	       0.128	       0.288	       0.048	       0.000	       0.000	
+1.200	       0.128	       0.416	       0.336	       0.048	       0.000	
+1.400	       0.544	       0.752	       0.384	       0.048	
+1.600	       1.296	       1.136	       0.432	
+1.800	       2.432	       1.568	
+2.000	       4.000	
 
 ```
 
