@@ -1459,7 +1459,44 @@ The system has NO solution(Inconsistent).
 ### LU Decomposition Method
 
 #### LU Decomposition Theory
-[Add your theory content here]
+LU Decomposition is a numerical method used to solve a system of linear equations by factorizing the coefficient matrix into a lower triangular matrix and an upper triangular matrix. It simplifies the solution process by converting the original system into two triangular systems.
+
+Matrix Representation
+
+Given the system:
+
+A X = B
+
+The coefficient matrix A is decomposed as:
+
+A = L U
+
+where
+L = lower triangular matrix (with diagonal elements equal to 1)
+U = upper triangular matrix
+
+Thus,
+
+L U X = B
+
+Solve in two steps:
+
+L Y = B
+U X = Y
+
+Algorithm (Short Steps)
+
+Read the coefficient matrix A and constant vector B.
+
+Decompose matrix A into L and U such that A = L U.
+
+Use forward substitution to solve L Y = B.
+
+Use backward substitution to solve U X = Y.
+
+Obtain the solution vector X.
+
+If you want the same format for Gauss Elimination / Gauss–Jordan / Cholesky, just tell me 👍
 
 #### LU Decomposition Code
 ```cpp
@@ -1785,7 +1822,34 @@ x3 = -1.000
 ### Matrix Inversion
 
 #### Matrix Inversion Theory
-[Add your theory content here]
+The Matrix Inversion Method is a numerical technique used to solve a system of linear equations by finding the inverse of the coefficient matrix. Once the inverse matrix is obtained, the solution can be calculated directly using matrix multiplication.
+
+Matrix Representation
+
+Given the system:
+
+A X = B
+
+If the inverse of A exists, then:
+
+A⁻¹ A X = A⁻¹ B
+
+⇒ X = A⁻¹ B
+
+where
+A⁻¹ is the inverse of the coefficient matrix A.
+
+Algorithm (Short Steps):
+
+1.Read the coefficient matrix A and constant vector B.
+
+2.Check whether det(A) ≠ 0 (inverse exists).
+
+3.Find the inverse of matrix A using Gauss–Jordan elimination.
+
+4.Multiply A⁻¹ with B to obtain X.
+
+5.The resulting vector X is the solution of the system.
 
 #### Matrix Inversion Code
 ```cpp
@@ -2933,7 +2997,39 @@ Estimated error : 0.004987
 #### Curve-fitting--regression
 #### linear-regression
 #### linear-regression-theory
-[Add your theory content here]
+The Curve Fitting Linear Regression Method is a numerical technique used to determine a straight-line relationship between two variables based on experimental or observed data. The method fits a linear equation to the data such that the sum of the squares of the deviations between the observed values and the computed values is minimized.
+
+Matrix Representation
+
+The linear curve is assumed in the form:
+
+y = a + b x
+
+For n observed data points, the normal equations are:
+
+Σy = n a + b Σx
+Σxy = a Σx + b Σx²
+
+In matrix form:
+
+[ n Σx ] [ a ] = [ Σy ]
+[ Σx Σx² ] [ b ] [ Σxy ]
+
+Solving this system gives the coefficients a and b.
+
+Algorithm (Short Steps)
+
+Read the given data points (x, y).
+
+Assume the linear model y = a + b x.
+
+Compute Σx, Σy, Σx², and Σxy.
+
+Form the normal equations in matrix form.
+
+Solve the equations to obtain a and b.
+
+Write the fitted curve using the obtained values.
 #### linear-regression-code
 ```cpp
 #include <bits/stdc++.h>
@@ -3045,7 +3141,37 @@ Linear Regression Equation: y = 4.800 + 0.187x
 ---
 #### Polynomial-regression
 #### polynomial-regression-theory
-[Add your theory content here]
+The Curve Fitting Polynomial Regression Method is a numerical technique used to find a polynomial equation that best fits a given set of experimental or observed data. The method determines the coefficients of the polynomial such that the sum of the squares of the deviations between observed values and calculated values is minimized.
+
+Matrix Representation
+
+The polynomial curve of degree m is assumed as:
+
+y = a₀ + a₁x + a₂x² + … + aₘxᵐ
+
+For n observed data points, the normal equations can be written in matrix form as:
+
+[ n Σx Σx² … Σxᵐ ] [ a₀ ] [ Σy ]
+[ Σx Σx² Σx³ … Σxᵐ⁺¹ ] [ a₁ ] [ Σxy ]
+[ Σx² Σx³ Σx⁴ … Σxᵐ⁺² ] [ a₂ ] = [ Σx²y ]
+[ . . . … . ] [ . ] [ . ]
+[ Σxᵐ Σxᵐ⁺¹ Σxᵐ⁺² … Σx²ᵐ ] [ aₘ ] [ Σxᵐy ]
+
+Solving this system gives the polynomial coefficients.
+
+Algorithm (Short Steps)
+
+Read the given data points (x, y).
+
+Assume a polynomial of degree m.
+
+Compute required summations: Σx, Σx², …, Σx²ᵐ and Σy, Σxy, …, Σxᵐy.
+
+Form the normal equations in matrix form.
+
+Solve the system to obtain the coefficients a₀, a₁, …, aₘ.
+
+Write the fitted polynomial curve.
 #### polynomial-regression-code
 ```cpp
 #include <bits/stdc++.h>
@@ -3200,7 +3326,53 @@ y = 12.43 + -5.51x + 0.76x^2
 ---     
 #### Transcendental-regression
 #### transcendental-regression-theory
-[Add your theory content here]
+The Curve Fitting Transcendental Regression Method is used when the relationship between variables is non-polynomial and follows a transcendental form such as exponential or power functions. The method transforms the given nonlinear equation into a linear form using logarithms and then applies linear regression to determine the constants.
+
+Matrix / Linearized Representation
+
+Common transcendental models are:
+
+Exponential model
+y = a e^(b x)
+
+Taking logarithm:
+ln y = ln a + b x
+
+Let
+Y = ln y, A = ln a
+
+Then the linear form becomes:
+Y = A + b x
+
+Power model
+y = a x^b
+
+Taking logarithm:
+ln y = ln a + b ln x
+
+Let
+Y = ln y, X = ln x, A = ln a
+
+Then the linear form becomes:
+Y = A + b X
+
+After linearization, normal equations of linear regression are applied.
+
+Algorithm (Short Steps)
+
+Read the given data points (x, y).
+
+Select a suitable transcendental model (exponential or power).
+
+Convert the model into linear form using logarithms.
+
+Compute required summations for linear regression.
+
+Solve the normal equations to obtain constants A and b.
+
+Find a by taking antilog of A.
+
+Write the fitted transcendental curve.
 #### transcendental-regression-code
 ```python
 # Add your code here
