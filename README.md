@@ -3153,16 +3153,126 @@ Use the backward differentiation formula.
 
 Substitute the backward differences in the formula.
 #### differentiation-backward-code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin >> T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin >> n;
+
+    vector<double> x(n), y(n);
+
+    for(int i = 0; i < n; i++) fin >> x[i];
+    for(int i = 0; i < n; i++) fin >> y[i];
+
+    double xp;
+    fin >> xp;
+
+    double h = x[1] - x[0];
+    double p = (xp - x[n-1]) / h;
+
+    vector<vector<double>> diff(n, vector<double>(n));
+    for(int i = 0; i < n; i++) diff[i][0] = y[i];
+
+    for(int j = 1; j < n; j++)
+        for(int i = n-1; i >= j; i--)
+            diff[i][j] = diff[i][j-1] - diff[i-1][j-1];
+
+    double dydx = 0.0;
+
+    if(n >= 2) dydx += diff[n-1][1];
+    if(n >= 3) dydx += (2*p + 1) * diff[n-1][2] / 2.0;
+    if(n >= 4) dydx += (3*p*p + 6*p + 2) * diff[n-1][3] / 6.0;
+    if(n >= 5) dydx += (4*p*p*p + 18*p*p + 22*p + 6) * diff[n-1][4] / 24.0;
+
+    dydx /= h;
+
+    fout << "Test Case " << i << endl;
+    fout << "Number of points: " << n << endl;
+
+    fout << fixed << setprecision(4);
+    fout<<"x values: ";
+    for(int i = 0; i < n; i++) fout << x[i] << " ";
+    fout << endl;
+    fout << "y values: ";
+    for(int i = 0; i < n; i++) fout << y[i] << " ";
+    fout << "\nStep size(h): " << h << endl;
+    fout << "Differentiation point: " << xp << endl;
+    fout << "Derivative: " << dydx << endl;
+
+    fout << "\nBackward Difference Table:\n";
+    for(int i = 0; i < n; i++)
+    {
+        fout << setw(4) << x[i] << "\t";
+        for(int j = 0; j <= i; j++)
+            fout << setw(12) << diff[i][j];
+        fout << endl;
+    }
+
+    if(i < T) fout << endl;
+    }
+
+    return 0;
+}
+
 ```
 #### differentiation-backward-input
 ```
-[Add your input format here]
+2
+7
+1.0 1.2 1.4 1.6 1.8 2.0 2.2
+2.7183 3.3201 4.0552 4.9530 6.0496 7.3891 9.0250
+2.2
+
+6
+1.0 1.2 1.4 1.6 1.8 2.0
+0 0.1280 0.5440 1.2960 2.4320 4.00
+1.1
 ```
 #### differentiation-backward-output
 ```
-[Add your output format here]
+Test Case 1
+Number of points: 7
+x values: 1.0000 1.2000 1.4000 1.6000 1.8000 2.0000 2.2000 
+y values: 2.7183 3.3201 4.0552 4.9530 6.0496 7.3891 9.0250 
+Step size(h): 0.2000
+Differentiation point: 2.2000
+Derivative: 9.0214
+
+Backward Difference Table:
+1.0000	      2.7183
+1.2000	      3.3201      0.6018
+1.4000	      4.0552      0.7351      0.1333
+1.6000	      4.9530      0.8978      0.1627      0.0294
+1.8000	      6.0496      1.0966      0.1988      0.0361      0.0067
+2.0000	      7.3891      1.3395      0.2429      0.0441      0.0080      0.0013
+2.2000	      9.0250      1.6359      0.2964      0.0535      0.0094      0.0014      0.0001
+
+Test Case 2
+Number of points: 6
+x values: 1.0000 1.2000 1.4000 1.6000 1.8000 2.0000 
+y values: 0.0000 0.1280 0.5440 1.2960 2.4320 4.0000 
+Step size(h): 0.2000
+Differentiation point: 1.1000
+Derivative: 0.6300
+
+Backward Difference Table:
+1.0000	      0.0000
+1.2000	      0.1280      0.1280
+1.4000	      0.5440      0.4160      0.2880
+1.6000	      1.2960      0.7520      0.3360      0.0480
+1.8000	      2.4320      1.1360      0.3840      0.0480      0.0000
+2.0000	      4.0000      1.5680      0.4320      0.0480      0.0000      0.0000
 ```
 
 ---
