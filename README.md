@@ -2682,31 +2682,18 @@ Formula:
 y(x) = y_n + p * (nabla y_n) + (p(p+1)/2!) * (nabla^2 y_n) + ...
 
 ALGORITHM: Newton’s Forward Interpolation
-
 1.Read the number of data points n.
-
 2.Read the equally spaced values of x and corresponding values of y.
-
 3.Construct the forward difference table using the given y values.
-
 4.Read the value of x for which interpolation is required.
-
 5.Compute the step size h = x1 − x0.
-
 6.Compute u = (x − x0) / h.
-
 7.Initialize result = y0.
-
 8.For i = 1 to n − 1:
-
 Compute term = (u(u−1)(u−2)…)/(i!)
-
 9.Multiply term with the i-th forward difference.
-
 10.Add the term to result.
-
 11.Output the interpolated value.
-````
 
 #### Newton Backward Code
 ```cpp
@@ -2788,7 +2775,7 @@ int main()
     return 0;
 }
 
-```
+````
 #### Newton Backward Input
 ```
 5
@@ -2808,10 +2795,10 @@ Backward Difference Table
      101	       8	      -4	      -1	      -3	
 
 Interpolated value at x = 1925 is 96.8368
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
-````
+---
 #### Newton Divided Difference Interpolation Method
 #### Newton Divided Difference Theory
 Newton’s Divided Difference Table
@@ -2844,7 +2831,6 @@ Algorithm: Newton’s Divided Difference
           + dd[0][1](x - x0)
           + dd[0][2](x - x0)(x - x1)
           + … + dd[0][n](x - x0)…(x - x_{n-1})
-````
 
 #### Newton Divided Difference Code
 ```cpp
@@ -2929,7 +2915,7 @@ int main()
 
     return 0;
 }
-```
+````
 #### Newton Divided Difference Input
 ```
 3
@@ -2953,7 +2939,6 @@ Estimated error : 0.004987
 [Back to Table of Contents](#table-of-contents)
 
 ---
-````
 #### Numerical Differentiation
 #### Differentiation Forward Interpolation Method
 #### Differentiation Forward Theory
@@ -2976,18 +2961,13 @@ dy/dx = (1/h) [ Δy₀ − (1/2)Δ²y₀ + (1/3)Δ³y₀ − (1/4)Δ⁴y₀ + �
 This formula gives the approximate first derivative at x = x₀.
 
 Algorithm (Short Steps)
-
-Read the equally spaced data points (x, y).
-
-Construct the forward difference table.
-
-Find the step size h.
-
-Use the forward differentiation formula.
-
-Substitute the forward differences in the formula.
-
-Compute the approximate derivative value.
+1. Read the equally spaced data points (x, y).
+2. Construct the forward difference table.
+3. Find the step size h.
+4. Use the forward differentiation formula.
+5. Substitute the forward differences in the formula.
+6. Compute the approximate derivative value.
+````
 #### Differentiation Forward Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3066,7 +3046,7 @@ int main()
 }
 
 
-```
+````
 #### Differentiation Forward Input
 ```
 2
@@ -3079,7 +3059,7 @@ int main()
 1.0 1.2 1.4 1.6 1.8 2.0
 0 0.1280 0.5440 1.2960 2.4320 4.00
 1.1
-```
+````
 #### Differentiation Forward Output
 ```
 Test Case 1
@@ -3114,7 +3094,7 @@ Forward Difference Table (Matrix Form):
 1.800	       2.432	       1.568	
 2.000	       4.000	
 
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
 ---
@@ -3141,16 +3121,12 @@ dy/dx = (1/h) [ ∇yₙ + (1/2)∇²yₙ + (1/3)∇³yₙ + (1/4)∇⁴yₙ + �
 This formula gives the approximate first derivative at x = xₙ.
 
 Algorithm (Short Steps)
-
-Read the equally spaced data points (x, y).
-
-Construct the backward difference table.
-
-Find the step size h.
-
-Use the backward differentiation formula.
-
-Substitute the backward differences in the formula.
+1. Read the equally spaced data points (x, y).
+2. Construct the backward difference table.
+3. Find the step size h.
+4. Use the backward differentiation formula.
+5. Substitute the backward differences in the formula.
+````
 #### Differentiation Backward Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3224,7 +3200,7 @@ int main()
     return 0;
 }
 
-```
+````
 #### Differentiation Backward Input
 ```
 2
@@ -3237,7 +3213,7 @@ int main()
 1.0 1.2 1.4 1.6 1.8 2.0
 0 0.1280 0.5440 1.2960 2.4320 4.00
 1.1
-```
+````
 #### Differentiation Backward Output
 ```
 Test Case 1
@@ -3272,11 +3248,10 @@ Backward Difference Table:
 1.6000	      1.2960      0.7520      0.3360      0.0480
 1.8000	      2.4320      1.1360      0.3840      0.0480      0.0000
 2.0000	      4.0000      1.5680      0.4320      0.0480      0.0000      0.0000
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
 ---
-
 #### Curve Fitting Regression
 #### Linear Regression Method
 #### Linear Regression Theory
@@ -3393,7 +3368,7 @@ int main()
 4
 4 7 3 1
 6 5 8 3
-```
+````
 #### Linear Regression Output
 ```
 Test Case 1
@@ -3420,7 +3395,7 @@ Intercept(a): 4.800
 Slope(b): 0.187
 Linear Regression Equation: y = 4.800 + 0.187x
 
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
 ---
@@ -3445,18 +3420,14 @@ For n observed data points, the normal equations can be written in matrix form a
 Solving this system gives the polynomial coefficients.
 
 Algorithm (Short Steps)
+1. Read the given data points (x, y).
+2. Assume a polynomial of degree m.
+3. Compute required summations: Σx, Σx², …, Σx²ᵐ and Σy, Σxy, …, Σxᵐy.
+4. Form the normal equations in matrix form.
+5. Solve the system to obtain the coefficients a₀, a₁, …, aₘ.
+6. Write the fitted polynomial curve.
 
-Read the given data points (x, y).
-
-Assume a polynomial of degree m.
-
-Compute required summations: Σx, Σx², …, Σx²ᵐ and Σy, Σxy, …, Σxᵐy.
-
-Form the normal equations in matrix form.
-
-Solve the system to obtain the coefficients a₀, a₁, …, aₘ.
-
-Write the fitted polynomial curve.
+````
 #### Polynomial Regression Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3561,7 +3532,7 @@ int main()
     return 0;
 }
 
-```
+````
 #### Polynomial Regression Input
 ```
 2
@@ -3603,10 +3574,11 @@ a[2] = 0.76
 Fitted Polynomial:
 y = 12.43 + -5.51x + 0.76x^2
 
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
----     
+---
+  
 #### Transcendental Regression Method
 #### transcendental Regression Theory
 The Curve Fitting Transcendental Regression Method is used when the relationship between variables is non-polynomial and follows a transcendental form such as exponential or power functions. The method transforms the given nonlinear equation into a linear form using logarithms and then applies linear regression to determine the constants.
@@ -3642,20 +3614,15 @@ Y = A + b X
 After linearization, normal equations of linear regression are applied.
 
 Algorithm (Short Steps)
+1. Read the given data points (x, y).
+2. Select a suitable transcendental model (exponential or power).
+3. Convert the model into linear form using logarithms.
+4. Compute required summations for linear regression.
+5. Solve the normal equations to obtain constants A and b.
+6. Find a by taking antilog of A.
+7. Write the fitted transcendental curve.
 
-Read the given data points (x, y).
-
-Select a suitable transcendental model (exponential or power).
-
-Convert the model into linear form using logarithms.
-
-Compute required summations for linear regression.
-
-Solve the normal equations to obtain constants A and b.
-
-Find a by taking antilog of A.
-
-Write the fitted transcendental curve.
+````
 #### Transcendental Regression Code
 ```cpp
 #include<bits/stdc++.h>
@@ -3804,7 +3771,7 @@ int main()
     return 0;
 }
 
-```
+````
 #### Transcendental Regression Input
 ```
 3
@@ -3853,5 +3820,3 @@ b: 41.059
 Transcendental Equation: y = 5.749 + 41.059*e^(x/4.0)
 ```
 [Back to Table of Contents](#table-of-contents)
-
----
