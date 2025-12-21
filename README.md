@@ -2972,16 +2972,155 @@ Linear Regression Equation: y = 4.800 + 0.187x
 #### polynomial-regression-theory
 [Add your theory content here]
 #### polynomial-regression-code
-```python
-# Add your code here
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<double> gaussianElimination(vector<vector<double>> A, vector<double> b)
+{
+    int n = A.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        int pivot = i;
+        for (int j = i + 1; j < n; j++)
+            if (fabs(A[j][i]) > fabs(A[pivot][i])) pivot = j;
+
+        swap(A[i], A[pivot]);
+        swap(b[i], b[pivot]);
+
+        double div = A[i][i];
+        for (int j = i; j < n; j++) A[i][j] /= div;
+        b[i] /= div;
+
+        for (int j = 0; j < n; j++)
+        {
+            if (j != i)
+            {
+                double mul = A[j][i];
+                for (int k = i; k < n; k++) A[j][k] -= mul * A[i][k];
+                b[j] -= mul * b[i];
+            }
+        }
+    }
+    return b;
+}
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin>>T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int m, deg;
+    fin >> m >> deg;
+;
+    int n = deg + 1;  
+
+    vector<double> x(m), y(m);
+
+    for (int i = 0; i < m; i++) fin >> x[i];
+    for (int i = 0; i < m; i++) fin >> y[i];  
+
+    vector<vector<double>> A(n, vector<double>(n, 0));
+    vector<double> B(n, 0);
+
+    vector<double> S(2 * deg + 1, 0);
+    for (int i = 0; i < m; i++)
+        for (int p = 0; p <= 2 * deg; p++) S[p] += pow(x[i], p);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) A[i][j] = S[i + j];
+
+    for (int i = 0; i < n; i++)
+        for (int k = 0; k < m; k++) B[i] += y[k] * pow(x[k], i);
+
+    vector<double> coeff = gaussianElimination(A, B);
+
+    fout << "Test Case " << i <<"\n\n";
+    fout << "Data Points: " << m << endl;
+    fout << "Polynomial Degree: " << deg << endl;
+
+    fout << endl;
+    for (int i = 0; i < m; i++) fout << x[i] << " ";
+    fout << endl;
+    for (int i = 0; i < m; i++) fout << y[i] << " "; 
+    fout << endl;
+
+    fout << fixed << setprecision(2);
+    fout << "\nCoefficients:\n";
+    for (int i = 0; i < n; i++) fout << "a[" << i << "] = " << coeff[i] << endl;
+
+    fout << "\nFitted Polynomial:\n";
+    fout << "y = ";
+    for (int i = 0; i < n; i++)
+    {
+    if (i > 0) fout << " + ";
+    fout << coeff[i];
+    if (i == 1) fout << "x";
+    else if (i > 1) fout << "x^" << i;
+    }
+    fout << endl;
+
+    if(i < T) fout<<endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 ```
 #### polynomial-regression-input
 ```
-[Add your input format here]
+2
+5 2
+1 2 3 4 5
+6 11 18 27 38
+
+5 2
+3 4 5 6 7
+2.5 3.2 3.8 6.5 11.5
 ```
 #### polynomial-regression-output
 ```
-[Add your output format here]
+Test Case 1
+
+Data Points: 5
+Polynomial Degree: 2
+
+1 2 3 4 5 
+6 11 18 27 38 
+
+Coefficients:
+a[0] = 3.00
+a[1] = 2.00
+a[2] = 1.00
+
+Fitted Polynomial:
+y = 3.00 + 2.00x + 1.00x^2
+
+Test Case 2
+
+Data Points: 5
+Polynomial Degree: 2
+
+3.00 4.00 5.00 6.00 7.00 
+2.50 3.20 3.80 6.50 11.50 
+
+Coefficients:
+a[0] = 12.43
+a[1] = -5.51
+a[2] = 0.76
+
+Fitted Polynomial:
+y = 12.43 + -5.51x + 0.76x^2
+
 ```
 ---     
 #### Transcendental-regression
