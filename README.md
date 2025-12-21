@@ -1819,7 +1819,7 @@ x3 = -1.000
 
 ---
 
-### Matrix Inversion
+### Matrix Inversion Method
 
 #### Matrix Inversion Theory
 The Matrix Inversion Method is a numerical technique used to solve a system of linear equations by finding the inverse of the coefficient matrix. Once the inverse matrix is obtained, the solution can be calculated directly using matrix multiplication.
@@ -2527,10 +2527,10 @@ Integral result: 0.000000
 
 ---
 
-#### Interpolation-methods
+#### Interpolation Methods
 
-#### newton-forward-interpolation
-#### newton-forward-theory
+#### Newton Forward Interpolation Method
+#### Newton Forward Theory
 Newton's forward interpolation is a numerical method used to approximate a function value near the beginning of a dataset. It strictly requires the data points to be spaced at equal intervals.​
 
 The Formula
@@ -2558,7 +2558,7 @@ Short Algorithm: Newton’s Forward Interpolation
 
 
 
-#### newton-forward-code
+#### Newton Forward Code
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -2640,7 +2640,7 @@ int main()
 }
 
 ```
-#### newton-forward-input
+#### Newton Forward Input
 ```
 4
 45 50 55 60
@@ -2649,7 +2649,7 @@ int main()
 
 ```
 
-#### newton-forward-output
+#### Newton Forward Output
 ```
 Forward Difference Table
 
@@ -2663,8 +2663,8 @@ Interpolated value at x = 52 is 0.788003
 
 ---
 
-#### Newton-backward-interpolation
-#### newton-backward-theory
+#### Newton Backward Interpolation Method
+#### Newton Backward Theory
  Newton's Backward Interpolation Method
 
 Newton's backward interpolation is a numerical method designed to approximate values located near the END of a dataset. It strictly requires the data points to be spaced at equal intervals.
@@ -2697,17 +2697,10 @@ Compute term = (u(u−1)(u−2)…)/(i!)
 10.Add the term to result.
 
 11.Output the interpolated value.
+````
 
-
-
-
-
-
-
-#### newton-backward-code
+#### Newton Backward Code
 ```cpp
-
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -2787,7 +2780,7 @@ int main()
 }
 
 ```
-#### newton-backward-input
+#### Newton Backward Input
 ```
 5
 1891 1901 1911 1921 1931
@@ -2795,7 +2788,7 @@ int main()
 1925
 ```
 
-#### newton-backward-output
+#### Newton Backward Output
 ```
 Backward Difference Table
 
@@ -2808,10 +2801,9 @@ Backward Difference Table
 Interpolated value at x = 1925 is 96.8368
 ```
 
----
-
-#### Newton-divided-difference-interpolation
-#### newton-divided-difference-theory
+````
+#### Newton Divided Difference Interpolation
+#### Newton Divided Difference Theory
 Newton’s Divided Difference Table
 
 Newton’s divided difference method is an interpolation technique that constructs a polynomial from data points (xi, yi) where the xi need NOT be equally spaced. 
@@ -2842,11 +2834,9 @@ Algorithm: Newton’s Divided Difference
           + dd[0][1](x - x0)
           + dd[0][2](x - x0)(x - x1)
           + … + dd[0][n](x - x0)…(x - x_{n-1})
+````
 
-
-
-
-#### newton-divided-difference-code
+#### Newton Divided Difference Code
 ```cpp
 #include <iostream>
 #include <fstream>
@@ -2930,17 +2920,17 @@ int main()
     return 0;
 }
 ```
-#### newton-divided-difference-input
+#### Newton Divided Difference Input
 ```
 3
 2 3 4 5
 0.6931 1.0986 1.3863 1.6094
 3.5
 
-```
+````
 
-#### newton-divided-difference-output
-```
+#### Newton Divided Difference Output
+````
 Divided Difference Table:
     0.693100     0.405500    -0.058900     0.008867 
     1.098600     0.287700    -0.032300 
@@ -2951,12 +2941,11 @@ Interpolated value at x = 3.500000 : 1.257175
 Estimated error : 0.004987
 ```
 
----
+````
+#### Numerical Differentiation
 
-#### Numerical-differentiation
-
-#### differentiation-forward-interpolation
-#### differentiation-forward-theory
+#### Differentiation Forward Interpolation Method
+#### Differentiation Forward Theory
 The Forward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. The method is based on Newton’s Forward Interpolation formula and is suitable when the value of the derivative is required near the beginning of the data table.
 
 Mathematical / Formula Representation
@@ -2988,7 +2977,7 @@ Use the forward differentiation formula.
 Substitute the forward differences in the formula.
 
 Compute the approximate derivative value.
-#### differentiation-forward-code
+#### Differentiation Forward Code
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -3067,7 +3056,7 @@ int main()
 
 
 ```
-#### differentiation-forward-input
+#### Differentiation Forward Input
 ```
 2
 6
@@ -3080,7 +3069,7 @@ int main()
 0 0.1280 0.5440 1.2960 2.4320 4.00
 1.1
 ```
-#### differentiation-forward-output
+#### Differentiation Forward Output
 ```
 Test Case 1
 Number of points: 6
@@ -3118,10 +3107,8 @@ Forward Difference Table (Matrix Form):
 
 ---
 
-
-
-#### Differentiation-backward-interpolation
-#### differentiation-backward-theory
+#### Differentiation Backward Interpolation Method
+#### Differentiation Backward Theory
 The Backward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. This method is based on Newton’s Backward Interpolation formula and is suitable when the value of the derivative is required near the end of the data table.
 
 Mathematical / Formula Representation
@@ -3152,7 +3139,7 @@ Find the step size h.
 Use the backward differentiation formula.
 
 Substitute the backward differences in the formula.
-#### differentiation-backward-code
+#### Differentiation Backward Code
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -3226,7 +3213,7 @@ int main()
 }
 
 ```
-#### differentiation-backward-input
+#### Differentiation Backward Input
 ```
 2
 7
@@ -3239,7 +3226,7 @@ int main()
 0 0.1280 0.5440 1.2960 2.4320 4.00
 1.1
 ```
-#### differentiation-backward-output
+#### Differentiation Backward Output
 ```
 Test Case 1
 Number of points: 7
@@ -3277,10 +3264,9 @@ Backward Difference Table:
 
 ---
 
-
-#### Curve-fitting--regression
-#### linear-regression
-#### linear-regression-theory
+#### Curve Fitting Regression
+#### Linear Regression Method
+#### Linear Regression Theory
 The Curve Fitting Linear Regression Method is a numerical technique used to determine a straight-line relationship between two variables based on experimental or observed data. The method fits a linear equation to the data such that the sum of the squares of the deviations between the observed values and the computed values is minimized.
 
 Matrix Representation
@@ -3314,7 +3300,7 @@ Form the normal equations in matrix form.
 Solve the equations to obtain a and b.
 
 Write the fitted curve using the obtained values.
-#### linear-regression-code
+#### Linear Regression Code
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -3380,7 +3366,7 @@ int main()
     return 0;
 }
 ```
-#### linear-regression-input
+#### Linear Regression Input
 ```
 3
 7
@@ -3395,7 +3381,7 @@ int main()
 4 7 3 1
 6 5 8 3
 ```
-#### linear-regression-output
+#### Linear Regression Output
 ```
 Test Case 1
 Number of points: 7
@@ -3409,7 +3395,7 @@ Test Case 2
 Number of points: 4
 x values: 3.000 9.000 5.000 3.000 
 y values: 8.000 6.000 4.000 2.000 
-Intercept(a): 4.167
+Intercept(a): 4.16l
 Slope(b): 0.167
 Linear Regression Equation: y = 4.167 + 0.167x
 
@@ -3423,8 +3409,8 @@ Linear Regression Equation: y = 4.800 + 0.187x
 
 ```
 ---
-#### Polynomial-regression
-#### polynomial-regression-theory
+#### Polynomial Regression Method
+#### Polynomial Regression Theory
 The Curve Fitting Polynomial Regression Method is a numerical technique used to find a polynomial equation that best fits a given set of experimental or observed data. The method determines the coefficients of the polynomial such that the sum of the squares of the deviations between observed values and calculated values is minimized.
 
 Matrix Representation
@@ -3456,7 +3442,7 @@ Form the normal equations in matrix form.
 Solve the system to obtain the coefficients a₀, a₁, …, aₘ.
 
 Write the fitted polynomial curve.
-#### polynomial-regression-code
+#### Polynomial Regression Code
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -3561,7 +3547,7 @@ int main()
 }
 
 ```
-#### polynomial-regression-input
+#### Polynomial Regression Input
 ```
 2
 5 2
@@ -3572,7 +3558,7 @@ int main()
 3 4 5 6 7
 2.5 3.2 3.8 6.5 11.5
 ```
-#### polynomial-regression-output
+#### Polynomial Regression Output
 ```
 Test Case 1
 Data Points: 5
@@ -3604,8 +3590,8 @@ y = 12.43 + -5.51x + 0.76x^2
 
 ```
 ---     
-#### Transcendental-regression
-#### transcendental-regression-theory
+#### Transcendental Regression Method
+#### transcendental Regression Theory
 The Curve Fitting Transcendental Regression Method is used when the relationship between variables is non-polynomial and follows a transcendental form such as exponential or power functions. The method transforms the given nonlinear equation into a linear form using logarithms and then applies linear regression to determine the constants.
 
 Matrix / Linearized Representation
@@ -3653,7 +3639,7 @@ Solve the normal equations to obtain constants A and b.
 Find a by taking antilog of A.
 
 Write the fitted transcendental curve.
-#### transcendental-regression-code
+#### Transcendental Regression Code
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
@@ -3802,7 +3788,7 @@ int main()
 }
 
 ```
-#### transcendental-regression-input
+#### Transcendental Regression Input
 ```
 3
 1
@@ -3820,7 +3806,7 @@ int main()
 1 2 3 4 5
 50 80 96 120 145
 ```
-#### transcendental-regression-output
+#### Transcendental Regression Output
 ```
 Test Case 1
 Equation Type: 1
@@ -3851,4 +3837,3 @@ Transcendental Equation: y = 5.749 + 41.059*e^(x/4.0)
 ```
 
 ---
-
