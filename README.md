@@ -2392,7 +2392,33 @@ Integral result: 0.000000
 
 #### newton-forward-interpolation
 #### newton-forward-theory
-[Add your theory content here]
+Newton's forward interpolation is a numerical method used to approximate a function value near the beginning of a dataset. It strictly requires the data points to be spaced at equal intervals.​
+
+The Formula
+The method uses "forward differences" (
+Δ
+Δ) derived from the dataset to build a polynomial. The value 
+y
+y at a specific 
+x
+x is:
+
+y(x)=y0+pΔy0+((p(p−1))/2!) *Δ^ 2y0 + ((p(p−1)(p−2))/3!)* Δ^3y0+…
+
+Short Algorithm: Newton’s Forward Interpolation
+
+1. Initialize: Read arrays X and Y, and the target value x.
+2. Calculate p: Compute step size h = X[1] - X[0] and p = (x - X[0]) / h.
+3. Build Table: Construct a difference table where every new column is the difference of the previous one: diff[i][j] = diff[i+1][j-1] - diff[i][j-1].
+4. Compute Sum: Initialize sum = Y[0] and u = 1. Loop from j = 1 to n-1:
+   - Update u = u * (p - (j - 1)).
+   - Add term: sum = sum + (u * diff[0][j]) / factorial(j).
+5. Output: Return sum.
+
+
+
+
+
 #### newton-forward-code
 ```cpp
 #include <bits/stdc++.h>
