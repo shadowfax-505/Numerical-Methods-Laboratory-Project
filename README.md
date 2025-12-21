@@ -2957,7 +2957,37 @@ Estimated error : 0.004987
 
 #### differentiation-forward-interpolation
 #### differentiation-forward-theory
-[Add your theory content here]
+The Forward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. The method is based on Newton’s Forward Interpolation formula and is suitable when the value of the derivative is required near the beginning of the data table.
+
+Mathematical / Formula Representation
+
+Newton’s Forward Interpolation formula is:
+
+y = y₀ + uΔy₀ + u(u−1)/2! Δ²y₀ + u(u−1)(u−2)/3! Δ³y₀ + …
+
+where
+u = (x − x₀)/h
+h = interval between successive x values
+
+Differentiating with respect to x:
+
+dy/dx = (1/h) [ Δy₀ − (1/2)Δ²y₀ + (1/3)Δ³y₀ − (1/4)Δ⁴y₀ + … ]
+
+This formula gives the approximate first derivative at x = x₀.
+
+Algorithm (Short Steps)
+
+Read the equally spaced data points (x, y).
+
+Construct the forward difference table.
+
+Find the step size h.
+
+Use the forward differentiation formula.
+
+Substitute the forward differences in the formula.
+
+Compute the approximate derivative value.
 #### differentiation-forward-code
 ```python
 # Add your code here
@@ -2977,7 +3007,36 @@ Estimated error : 0.004987
 
 #### Differentiation-backward-interpolation
 #### differentiation-backward-theory
-[Add your theory content here]
+The Backward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. This method is based on Newton’s Backward Interpolation formula and is suitable when the value of the derivative is required near the end of the data table.
+
+Mathematical / Formula Representation
+
+Newton’s Backward Interpolation formula is:
+
+y = yₙ + u∇yₙ + u(u+1)/2! ∇²yₙ + u(u+1)(u+2)/3! ∇³yₙ + …
+
+where
+u = (x − xₙ)/h
+h = interval between successive x values
+∇ = backward difference operator
+
+Differentiating with respect to x:
+
+dy/dx = (1/h) [ ∇yₙ + (1/2)∇²yₙ + (1/3)∇³yₙ + (1/4)∇⁴yₙ + … ]
+
+This formula gives the approximate first derivative at x = xₙ.
+
+Algorithm (Short Steps)
+
+Read the equally spaced data points (x, y).
+
+Construct the backward difference table.
+
+Find the step size h.
+
+Use the backward differentiation formula.
+
+Substitute the backward differences in the formula.
 #### differentiation-backward-code
 ```python
 # Add your code here
