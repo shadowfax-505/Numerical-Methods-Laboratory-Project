@@ -86,7 +86,7 @@ README.md/
     - [Code](#lu-decomposition-code)
     - [Input](#lu-decomposition-input)
     - [Output](#lu-decomposition-output)
-  - [Matrix Inversion](#matrix-inversion)
+  - [Matrix Inversion](#matrix-inversion-method)
     - [Theory](#matrix-inversion-theory)
     - [Code](#matrix-inversion-code)
     - [Input](#matrix-inversion-input)
@@ -615,6 +615,7 @@ Root 2: 0.999756
 Root 3: 2.000244
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -810,6 +811,7 @@ Interval: [0.5000, 1.0000] Root: 0.999756 Iterations: 9
 Interval: [1.5000, 2.0000] Root: 2.000244 Iterations: 9
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1021,6 +1023,7 @@ Max iterations: 50
 Root 1 = 2.000000 (Iterations: 6)
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1219,6 +1222,7 @@ Matrix:
 The system has NO solution.
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1454,6 +1458,7 @@ Reduced Row Echelon Form:
 The system has NO solution(Inconsistent).
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -1817,6 +1822,7 @@ x1 = 2.000
 x2 = 3.000
 x3 = -1.000
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2102,6 +2108,7 @@ x2 = -3.000
 x3 = 4.000
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2217,6 +2224,7 @@ Step size (h)             : 0.2000
 Approximate value of y at x = 2.0000 is: 1.1036
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2383,6 +2391,7 @@ Step size (h): 0.333333
 Integral result: 0.000000
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2525,6 +2534,7 @@ Step size (h): 0.666667
 Integral result: 0.000000
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2554,10 +2564,7 @@ Short Algorithm: Newton’s Forward Interpolation
    - Update u = u * (p - (j - 1)).
    - Add term: sum = sum + (u * diff[0][j]) / factorial(j).
 5. Output: Return sum.
-
-
-
-
+``
 
 #### Newton Forward Code
 ```cpp
@@ -2661,6 +2668,7 @@ Forward Difference Table
 
 Interpolated value at x = 52 is 0.788003
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -2801,9 +2809,10 @@ Backward Difference Table
 
 Interpolated value at x = 1925 is 96.8368
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ````
-#### Newton Divided Difference Interpolation
+#### Newton Divided Difference Interpolation Method
 #### Newton Divided Difference Theory
 Newton’s Divided Difference Table
 
@@ -2941,10 +2950,10 @@ Divided Difference Table:
 Interpolated value at x = 3.500000 : 1.257175
 Estimated error : 0.004987
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ````
 #### Numerical Differentiation
-
 #### Differentiation Forward Interpolation Method
 #### Differentiation Forward Theory
 The Forward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. The method is based on Newton’s Forward Interpolation formula and is suitable when the value of the derivative is required near the beginning of the data table.
@@ -3105,6 +3114,7 @@ Forward Difference Table (Matrix Form):
 2.000	       4.000	
 
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -3262,6 +3272,7 @@ Backward Difference Table:
 1.8000	      2.4320      1.1360      0.3840      0.0480      0.0000
 2.0000	      4.0000      1.5680      0.4320      0.0480      0.0000      0.0000
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -3409,6 +3420,8 @@ Slope(b): 0.187
 Linear Regression Equation: y = 4.800 + 0.187x
 
 ```
+[Back to Table of Contents](#table-of-contents)
+
 ---
 #### Polynomial Regression Method
 #### Polynomial Regression Theory
@@ -3590,6 +3603,8 @@ Fitted Polynomial:
 y = 12.43 + -5.51x + 0.76x^2
 
 ```
+[Back to Table of Contents](#table-of-contents)
+
 ---     
 #### Transcendental Regression Method
 #### transcendental Regression Theory
@@ -3836,5 +3851,6 @@ a: 5.749
 b: 41.059
 Transcendental Equation: y = 5.749 + 41.059*e^(x/4.0)
 ```
+[Back to Table of Contents](#table-of-contents)
 
 ---
