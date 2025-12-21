@@ -2673,7 +2673,40 @@ Interpolated value at x = 1925 is 96.8368
 
 #### Newton-divided-difference-interpolation
 #### newton-divided-difference-theory
-[Add your theory content here]
+Newton’s Divided Difference Table
+
+Newton’s divided difference method is an interpolation technique that constructs a polynomial from data points (xi, yi) where the xi need NOT be equally spaced. 
+
+A divided difference table is built recursively:
+- First divided difference: [xi, xi+1] = (f(xi+1) – f(xi)) / (xi+1 – xi).
+- Higher-order differences use previous divided differences to form an upper triangular table. 
+
+The interpolating polynomial in one line is:
+P(x) = f[x0] + f[x0, x1](x – x0) + f[x0, x1, x2](x – x0)(x – x1) + … + f[x0, x1, …, xn](x – x0)(x – x1)…(x – xn-1).
+Algorithm: Newton’s Divided Difference
+
+1. Input:
+   - Read data points (xi, yi) for i = 0, 1, …, n. 
+
+2. Initialize table:
+   - Set dd[i][0] = yi for all i. 
+
+3. Build divided difference table:
+   - For k = 1 to n:
+       For i = 0 to n - k:
+         dd[i][k] = (dd[i+1][k-1] - dd[i][k-1]) / (x_{i+k} - x_i). 
+
+4. Form polynomial:
+   - Coefficients are: dd[0][0], dd[0][1], …, dd[0][n].
+   - Polynomial:
+     P(x) = dd[0][0]
+          + dd[0][1](x - x0)
+          + dd[0][2](x - x0)(x - x1)
+          + … + dd[0][n](x - x0)…(x - x_{n-1})
+
+
+
+
 #### newton-divided-difference-code
 ```cpp
 #include <iostream>
