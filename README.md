@@ -37,7 +37,7 @@ README.md/
     ├── Differentiation by Forward Interpolation
     ├── Differentiation by Backward Interpolation
 
-├── Curve Fitting & Regression
+├── Curve Fitting: Regression
     ├── Linear Regression
     ├── Polynomial Regression
     ├── Transcendental Regression
@@ -140,7 +140,7 @@ README.md/
     - [Input](#differentiation-backward-input)
     - [Output](#differentiation-backward-output)
 
-- [Curve Fitting / Regression](#curve-fitting--regression)
+- [Curve Fitting: Regression](#curve-fitting-regression)
   - [Linear Regression](#linear-regression-method)
     - [Theory](#linear-regression-theory)
     - [Code](#linear-regression-code)
@@ -2967,7 +2967,7 @@ Algorithm (Short Steps)
 4. Use the forward differentiation formula.
 5. Substitute the forward differences in the formula.
 6. Compute the approximate derivative value.
-````
+
 #### Differentiation Forward Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3126,7 +3126,7 @@ Algorithm (Short Steps)
 3. Find the step size h.
 4. Use the backward differentiation formula.
 5. Substitute the backward differences in the formula.
-````
+
 #### Differentiation Backward Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3252,7 +3252,7 @@ Backward Difference Table:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-#### Curve Fitting Regression
+#### Curve Fitting: Regression
 #### Linear Regression Method
 #### Linear Regression Theory
 The Curve Fitting Linear Regression Method is a numerical technique used to determine a straight-line relationship between two variables based on experimental or observed data. The method fits a linear equation to the data such that the sum of the squares of the deviations between the observed values and the computed values is minimized.
@@ -3427,7 +3427,6 @@ Algorithm (Short Steps)
 5. Solve the system to obtain the coefficients a₀, a₁, …, aₘ.
 6. Write the fitted polynomial curve.
 
-````
 #### Polynomial Regression Code
 ```cpp
 #include <bits/stdc++.h>
@@ -3622,7 +3621,6 @@ Algorithm (Short Steps)
 6. Find a by taking antilog of A.
 7. Write the fitted transcendental curve.
 
-````
 #### Transcendental Regression Code
 ```cpp
 #include<bits/stdc++.h>
