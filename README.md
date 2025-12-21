@@ -2085,7 +2085,39 @@ Approximate value of y at x = 2.0000 is: 1.1036
 ### Simpson's 1/3 Rule
 
 #### Simpson's 1/3 Theory
-[Add your theory content here]
+Simpson's 1/3 Rule
+
+Theory
+
+Simpson’s 1/3 Rule is a numerical integration technique used to approximate the definite integral of a function. It provides a more accurate result than the Trapezoidal Rule by approximating the integrand with a second-degree polynomial (parabola) over each pair of subintervals. This method is particularly effective for smooth functions and is exact for polynomials of degree three or less.
+
+Mathematical Principle
+Let f(x) be a continuous function on the interval [a, b]. The interval is divided into an even number (n) of equal subintervals, each of width:
+h = (b - a) / n
+
+The approximate value of the integral is given by:
+∫[a to b] f(x) dx ≈ (h / 3) [ f(x0) + f(xn)
++ 4 (f(x1) + f(x3) + ... + f(xn-1))
++ 2 (f(x2) + f(x4) + ... + f(xn-2)) ]
+
+where n must be even.
+
+Algorithm (Simpson’s 1/3 Rule)
+1. Choose the limits of integration a and b.
+2. Select an even number of subintervals n.
+3. Compute the step size h = (b - a) / n.
+4. Evaluate the function at each point x_i = a + i*h.
+5. Apply Simpson’s 1/3 formula to calculate the approximate integral.
+6. The result obtained is the numerical approximation of the definite integral.
+
+Features
+- Higher accuracy than Trapezoidal Rule
+- Exact for cubic polynomials
+- Requires even number of subintervals
+- Suitable for smooth functions
+- Simple and efficient implementation
+- Default error tolerance depends on step size
+
 
 #### Simpson's 1/3 Code
 ```cpp
@@ -2217,7 +2249,18 @@ Integral result: 0.000000
 ### Simpson's 3/8 Rule
 
 #### Simpson's 3/8 Theory
-[Add your theory content here]
+Simpson’s 3/8 Rule
+Theory
+
+Simpson’s 3/8 Rule is a numerical integration technique used to approximate the definite integral of a function. It is an extension of Simpson’s 1/3 Rule and approximates the integrand using a third-degree polynomial (cubic) over three consecutive subintervals. This method provides good accuracy for smooth functions and is exact for polynomials of degree three or less.
+
+Algorithm (Simpson’s 3/8 Rule)
+1. Choose the limits of integration a and b.
+2. Select the number of subintervals n such that n is a multiple of 3.
+3. Compute the step size h = (b-a)/h.
+4. Evaluate the function at each point xi = a + i*h.
+5. Apply Simpson’s 3/8 formula to calculate the approximate integral.
+6. The result obtained is the numerical approximation of the definite integral.
 
 #### Simpson's 3/8 Code
 ```python
