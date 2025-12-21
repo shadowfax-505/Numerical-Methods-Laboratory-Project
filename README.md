@@ -2990,15 +2990,127 @@ Substitute the forward differences in the formula.
 Compute the approximate derivative value.
 #### differentiation-forward-code
 ```python
-# Add your code here
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ifstream fin("input.txt");
+    ofstream fout("output.txt");
+
+    int T;
+    fin >> T;
+
+    for(int i = 1; i <= T; i++)
+    {
+    int n;
+    fin >> n;
+
+    vector<double> x(n), y(n);
+
+    for (int i = 0; i < n; i++) fin >> x[i];
+    for (int i = 0; i < n; i++) fin >> y[i];
+
+    double xp;
+    fin >> xp;
+
+    double h = x[1] - x[0]; 
+    double p = (xp - x[0]) / h;
+
+    vector<vector<double>> diff(n, vector<double>(n, 0.0));
+    for (int i = 0; i < n; i++) diff[i][0] = y[i];
+
+    for (int j = 1; j < n; j++)
+        for (int i = 0; i < n - j; i++) diff[i][j] = diff[i + 1][j - 1] - diff[i][j - 1];
+
+    double dydx = 0.0;
+    if (n >= 2) dydx += diff[0][1];
+    if (n >= 3) dydx += ((2 * p - 1) / 2.0) * diff[0][2];
+    if (n >= 4) dydx += ((3 * p * p - 6 * p + 2) / 6.0) * diff[0][3];
+    if (n >= 5) dydx += ((4 * p * p * p - 18 * p * p + 22 * p - 6) / 24.0) * diff[0][4];
+    dydx /= h;
+
+    fout<<"Test Case " << i << endl;
+    fout << "Number of points: " << n << endl;
+    fout<<"x values: ";
+    for (int i = 0; i < n; i++) fout << x[i] << " ";
+    fout<<endl;
+    fout<<"y values: ";
+    for (int i = 0; i < n; i++) fout << y[i] << " ";
+    fout << "\nStep size(h): " << h << endl;
+    fout << "Differentiation point: " << xp << endl;
+    fout << "Derivative: " << dydx << endl;
+
+    fout << "\nForward Difference Table (Matrix Form):\n";
+    for (int i = 0; i < n; i++)
+    {
+        fout << setw(4) << x[i] << "\t";
+        for (int j = 0; j < n - i; j++)
+        {
+            double v = diff[i][j];
+            if(fabs(v) < 1e-9) v = 0.0;
+            fout << setw(12) << v << "\t";
+        }
+        fout << endl;
+    }
+
+    if(i < T) fout << endl;
+    }
+
+    fin.close();
+    fout.close();
+
+    return 0;
+}
+
 ```
 #### differentiation-forward-input
 ```
-[Add your input format here]
+2
+6
+1.5 2.0 2.5 3.0 3.5 4.0
+3.375 7.0 13.625 24.0 38.875 59.0
+1.5
+
+6
+1.0 1.2 1.4 1.6 1.8 2.0
+0 0.1280 0.5440 1.2960 2.4320 4.00
+1.1
 ```
 #### differentiation-forward-output
 ```
-[Add your output format here]
+Test Case 1
+Number of points: 6
+x values: 1.5 2 2.5 3 3.5 4 
+y values: 3.375 7 13.625 24 38.875 59 
+Step size(h): 0.5
+Differentiation point: 1.5
+Derivative: 4.75
+
+Forward Difference Table (Matrix Form):
+ 1.5	       3.375	       3.625	           3	        0.75	           0	           0	
+   2	           7	       6.625	        3.75	        0.75	           0	
+ 2.5	      13.625	      10.375	         4.5	        0.75	
+   3	          24	      14.875	        5.25	
+ 3.5	      38.875	      20.125	
+   4	          59	
+
+Test Case 2
+Number of points: 6
+x values: 1 1.2 1.4 1.6 1.8 2 
+y values: 0 0.128 0.544 1.296 2.432 4 
+Step size(h): 0.2
+Differentiation point: 1.1
+Derivative: 0.63
+
+Forward Difference Table (Matrix Form):
+   1	           0	       0.128	       0.288	       0.048	           0	           0	
+ 1.2	       0.128	       0.416	       0.336	       0.048	           0	
+ 1.4	       0.544	       0.752	       0.384	       0.048	
+ 1.6	       1.296	       1.136	       0.432	
+ 1.8	       2.432	       1.568	
+   2	           4	
+
 ```
 
 ---
