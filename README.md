@@ -3018,7 +3018,7 @@ int main()
     {
     int m, deg;
     fin >> m >> deg;
-;
+
     int n = deg + 1;  
 
     vector<double> x(m), y(m);
