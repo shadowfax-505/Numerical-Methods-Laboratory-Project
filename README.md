@@ -1224,7 +1224,48 @@ The system has NO solution.
 ### Gauss Jordan Elimination Method
 
 #### Gauss Jordan Theory
-[Add your theory content here]
+The Gauss–Jordan Elimination method is a direct numerical technique used to solve a system of linear equations. It is an extension of the Gauss Elimination method and transforms the given system into a reduced row-echelon form (RREF), where the solution can be obtained directly.
+
+A system of linear equations can be represented in matrix form as:
+
+A X = B
+
+where
+A is the coefficient matrix,
+X is the column matrix of unknowns,
+B is the constant column matrix.
+
+This system is written as an augmented matrix:
+
+[A | B]
+
+The objective of the Gauss–Jordan method is to convert the augmented matrix into the form:
+
+[I | X]
+
+where I is the identity matrix and X contains the solutions of the variables.
+
+This transformation is achieved using elementary row operations:
+
+Interchanging two rows
+
+Multiplying a row by a non-zero constant
+
+Adding or subtracting a multiple of one row to another row
+
+In Gauss–Jordan elimination, each pivot element (leading diagonal element) is first converted to 1, and then all other elements in that column are made zero. This process is repeated for every variable until the left side of the augmented matrix becomes an identity matrix.
+
+Unlike Gauss Elimination, which produces an upper triangular matrix and requires back substitution, Gauss–Jordan elimination directly yields the solution without back substitution.
+
+The method is widely used for:
+
+Solving systems of linear equations
+
+Finding the inverse of a matrix
+
+Checking consistency of linear systems
+
+Although Gauss–Jordan elimination requires more computations than Gauss elimination, it provides a straightforward and systematic approach to obtaining exact solutions.
 
 #### Gauss Jordan Code
 ```cpp
