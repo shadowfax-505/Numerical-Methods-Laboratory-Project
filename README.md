@@ -2949,9 +2949,10 @@ Divided Difference Table:
 
 Interpolated value at x = 3.500000 : 1.257175
 Estimated error : 0.004987
-```
+````
 [Back to Table of Contents](#table-of-contents)
 
+---
 ````
 #### Numerical Differentiation
 #### Differentiation Forward Interpolation Method
