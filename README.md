@@ -1,5 +1,34 @@
 # Numerical Methods
 ### Introduction
+The project is a classic implementation of the 19 numerical methods we learned in our numerical methods labratory. Each methods are use to solve a particular type of equation . Each methods have their own respective features . We built the project so that the methods take input from a txt file and gives output to another txt file. All methods are well structured under their respective types.Such as:
+
+### 1. Solution of Non-Linear Equations (4 methods)
+* Bisection Method
+* False Position Method
+* Newton-Raphson Method
+* Secant Method
+### 2. Solution of Linear Equations (4 methods)
+* Gauss Elimination
+* Gauss-Jordan Elimination
+* LU Decomposition (Doolittle)
+* Matrix Inversion
+### 3. Differential Equation Solving (1 method)
+* Runge-Kutta 4th Order Method
+### 4. Interpolation Methods (3 methods)
+* Newton Forward Interpolation
+* Newton Backward Interpolation
+* Newton Divided Difference Interpolation
+### 5. Numerical Differentiation (2 methods)
+* Differentiation by Forward Interpolation
+* Differentiation by Backward Interpolation
+### 6. Curve Fitting & Regression (3 methods)
+* Linear Regression
+* Polynomial Regression
+* Transcendental Regression
+### 7. Numerical Integration (2 methods)
+* Simpson's 1/3 Rule
+* Simpson's 3/8 Rule
+
 
 
 ### Project Structure
