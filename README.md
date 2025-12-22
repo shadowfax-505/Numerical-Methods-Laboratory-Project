@@ -1,6 +1,6 @@
 # Numerical Methods
 ### Introduction
-The project is a classic implementation of the 19 numerical methods we learned in our numerical methods labratory. Each methods are use to solve a particular type of equation . Each methods have their own respective features . We built the project so that the methods take input from a txt file and gives output to another txt file. All methods are well structured under their respective types.Such as:
+The project is a classic implementation of the 19 numerical methods we learned in our numerical methods labratory. Each methods are use to solve a particular type of equation . Each methods have their own respective features . We built the project so that the methods take input from a .txt file and gives output to another .txt file. All methods are well structured under their respective types.Such as:
 
 ### 1. Solution of Non-Linear Equations (4 methods)
 * Bisection Method
@@ -3308,15 +3308,12 @@ Algorithm (Short Steps)
 
 Read the given data points (x, y).
 
-Assume the linear model y = a + b x.
+1. Assume the linear model y = a + b x.
+2. Compute Σx, Σy, Σx², and Σxy.
+3. Form the normal equations in matrix form.
+4. Solve the equations to obtain a and b.
+5. Write the fitted curve using the obtained values.
 
-Compute Σx, Σy, Σx², and Σxy.
-
-Form the normal equations in matrix form.
-
-Solve the equations to obtain a and b.
-
-Write the fitted curve using the obtained values.
 #### Linear Regression Code
 ```cpp
 #include <bits/stdc++.h>
