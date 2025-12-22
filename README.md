@@ -3305,14 +3305,12 @@ In matrix form:
 Solving this system gives the coefficients a and b.
 
 Algorithm (Short Steps)
-
-Read the given data points (x, y).
-
-1. Assume the linear model y = a + b x.
-2. Compute Σx, Σy, Σx², and Σxy.
-3. Form the normal equations in matrix form.
-4. Solve the equations to obtain a and b.
-5. Write the fitted curve using the obtained values.
+1. Read the given data points (x, y).
+2. Assume the linear model y = a + b x.
+3. Compute Σx, Σy, Σx², and Σxy.
+4. Form the normal equations in matrix form.
+5. Solve the equations to obtain a and b.
+6. Write the fitted curve using the obtained values.
 
 #### Linear Regression Code
 ```cpp
