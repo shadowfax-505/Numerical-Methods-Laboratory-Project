@@ -75,7 +75,7 @@ README.md/
 ```
 
 
-#### Table of Contents
+### Table of Contents
 
 - [Solution of Non-Linear Equations](#solution-of-non-linear-equations)
   - [Bisection Method](#bisection-method)
