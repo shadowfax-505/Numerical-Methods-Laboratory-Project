@@ -193,7 +193,7 @@ README.md/
 ---
 
 
-### Solution of Non-Linear Equations
+## Solution of Non-Linear Equations
 
 ### Bisection Method
 
@@ -1044,7 +1044,7 @@ Root 1 = 2.000000 (Iterations: 6)
 
 ---
 
-### Solution of Linear Equations
+## Solution of Linear Equations
 
 ### Gauss Elimination Method
 
@@ -2129,7 +2129,7 @@ x3 = 4.000
 
 ---
 
-### Solution of Differential Equations
+## Solution of Differential Equations
 
 ### Runge-Kutta 4th Order Method
 
@@ -2245,14 +2245,11 @@ Approximate value of y at x = 2.0000 is: 1.1036
 
 ---
 
-### Numerical Integration
+## Numerical Integration
 
 ### Simpson's 1/3 Rule
 
 #### Simpson's 1/3 Theory
-Simpson's 1/3 Rule
-
-Theory
 
 Simpson’s 1/3 Rule is a numerical integration technique used to approximate the definite integral of a function. It provides a more accurate result than the Trapezoidal Rule by approximating the integrand with a second-degree polynomial (parabola) over each pair of subintervals. This method is particularly effective for smooth functions and is exact for polynomials of degree three or less.
 
@@ -2555,9 +2552,9 @@ Integral result: 0.000000
 
 ---
 
-#### Interpolation Methods
+## Interpolation Methods
 
-#### Newton Forward Interpolation Method
+### Newton Forward Interpolation Method
 #### Newton Forward Theory
 Newton's forward interpolation is a numerical method used to approximate a function value near the beginning of a dataset. It strictly requires the data points to be spaced at equal intervals.​
 
@@ -2689,7 +2686,7 @@ Interpolated value at x = 52 is 0.788003
 
 ---
 
-#### Newton Backward Interpolation Method
+### Newton Backward Interpolation Method
 #### Newton Backward Theory
  Newton's Backward Interpolation Method
 
@@ -2816,7 +2813,7 @@ Interpolated value at x = 1925 is 96.8368
 [Back to Table of Contents](#table-of-contents)
 
 ---
-#### Newton Divided Difference Interpolation Method
+### Newton Divided Difference Interpolation Method
 #### Newton Divided Difference Theory
 Newton’s Divided Difference Table
 
@@ -2956,8 +2953,8 @@ Estimated error : 0.004987
 [Back to Table of Contents](#table-of-contents)
 
 ---
-#### Numerical Differentiation
-#### Differentiation Forward Interpolation Method
+## Numerical Differentiation
+### Differentiation Forward Interpolation Method
 #### Differentiation Forward Theory
 The Forward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. The method is based on Newton’s Forward Interpolation formula and is suitable when the value of the derivative is required near the beginning of the data table.
 
@@ -3116,7 +3113,7 @@ Forward Difference Table (Matrix Form):
 
 ---
 
-#### Differentiation Backward Interpolation Method
+### Differentiation Backward Interpolation Method
 #### Differentiation Backward Theory
 The Backward Interpolation Differentiation Method is a numerical technique used to approximate the derivative of a function when the function values are known at equally spaced points. This method is based on Newton’s Backward Interpolation formula and is suitable when the value of the derivative is required near the end of the data table.
 
@@ -3269,8 +3266,8 @@ Backward Difference Table:
 [Back to Table of Contents](#table-of-contents)
 
 ---
-#### Curve Fitting: Regression
-#### Linear Regression Method
+## Curve Fitting: Regression
+### Linear Regression Method
 #### Linear Regression Theory
 The Curve Fitting Linear Regression Method is a numerical technique used to determine a straight-line relationship between two variables based on experimental or observed data. The method fits a linear equation to the data such that the sum of the squares of the deviations between the observed values and the computed values is minimized.
 
@@ -3411,7 +3408,7 @@ Linear Regression Equation: y = 4.800 + 0.187x
 [Back to Table of Contents](#table-of-contents)
 
 ---
-#### Polynomial Regression Method
+### Polynomial Regression Method
 #### Polynomial Regression Theory
 The Curve Fitting Polynomial Regression Method is a numerical technique used to find a polynomial equation that best fits a given set of experimental or observed data. The method determines the coefficients of the polynomial such that the sum of the squares of the deviations between observed values and calculated values is minimized.
 
@@ -3590,8 +3587,8 @@ y = 12.43 + -5.51x + 0.76x^2
 
 ---
   
-#### Transcendental Regression Method
-#### transcendental Regression Theory
+### Transcendental Regression Method
+#### Transcendental Regression Theory
 The Curve Fitting Transcendental Regression Method is used when the relationship between variables is non-polynomial and follows a transcendental form such as exponential or power functions. The method transforms the given nonlinear equation into a linear form using logarithms and then applies linear regression to determine the constants.
 
 Matrix / Linearized Representation
