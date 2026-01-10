@@ -198,9 +198,6 @@ README.md/
 ### Bisection Method
 
 #### Bisection Theory
-Bisection Method
-
-Theory
 
 The Bisection Method is a numerical method which is used to find the real roots of a polynomial function. It works by dividing an interval into two halves and selecting the sub-interval in which the root lies. The method is based on the Intermediate Value Theorem, which guarantees the existence of a root within an interval where the function values at the endpoints have opposite signs. This method gradually reduces the interval containing the root by taking the average (midpoint) of the interval endpoints. Although simple and reliable, the bisection method converges relatively slowly compared to other numerical methods.
 
@@ -413,9 +410,6 @@ Roots:
 ### False Position Method
 
 #### False Position Theory
-False Position Method
-
-Theory
 
 The False Position Method, also known as the Regula Falsi Method, is a numerical technique used to find the roots of a continuous function. Like the Bisection Method, it requires an interval [a, b] where the function changes sign, i.e., f(a) * f(b) < 0.
 The False Position Method uses a straight line connecting the points (a, f(a)) and (b, f(b)) and finds the point where this line intersects the x-axis. This intersection is used as a better approximation of the root.
@@ -651,9 +645,6 @@ Root 3: 2.000244
 ### Secant Method
 
 #### Secant Theory
-Secant Method
-
-Theory
 
 The Secant Method is a numerical method used to find the roots of a continuous function. It is similar to the Newton-Raphson method but does not require the computation of derivatives. Instead, it uses a line through two points on the function curve to approximate the root.
 The method iteratively updates the approximation of the root using the two most recent estimates. The Secant Method is generally faster than the Bisection Method but may be less stable.
@@ -847,9 +838,6 @@ Interval: [1.5000, 2.0000] Root: 2.000244 Iterations: 9
 ### Newton Raphson Method
 
 #### Newton Raphson Theory
-Newton-Raphson Method
-
-Theory
 
 The Newton-Raphson Method is a widely used numerical technique to find the roots of a continuous and differentiable function. It uses the derivative of the function to iteratively approximate the root. This method generally converges faster than the Bisection and Secant methods when the initial guess is sufficiently close to the actual root.
 
